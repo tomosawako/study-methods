@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+      <h1 class="my-5"><b>
+        ようこそ
+        <i class="fa-solid fa-pencil"></i> Study methodsへ！！
+        </b></h1>
+      <p class="my-5 mx-5">
+        このサイトでは様々な資格や科目の勉強方法を検索したり、勉強の成果を投稿したりできます。
+        勉強を頑張りたい方、勉強の成果を投稿したい方、情報交換をしたい方は是非登録してご利用ください。
+      </p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+          <%=link_to "新規登録", new_enduser_registration_path, class: "btn btn-success btn-block mb-3" %>
+        </div>
+        <div class="row">
+          <%= link_to "ログイン", new_enduser_session_path, class: "btn btn-primary btn-block" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
