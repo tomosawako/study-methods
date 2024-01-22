@@ -1,0 +1,23 @@
+<h4 class="my-5 mx-5"><b>科目資格一覧・追加</b></h4>
+<div class="mb-5">
+  <%= form_with model: @category, url: admin_categories_path, method: :post do |f| %>
+  <b><%= f.label :"科目資格名", class: "mx-5" %></b>
+  <%= f.text_field :name, class: "mx-4" %>
+  <%= f.submit '新規登録', class: "btn btn-success ml-4" %>
+  <% end %>
+</div>
+
+<table class="table col-5 ml-5">
+  <thead class="thead-light">
+    <tr>
+      <th>科目・資格</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %></td>
+      <td><%= link_to "編集する", edit_admin_category_path(category.id), class: "btn btn-success" %></td>
+    </tr>
+  <% end %>
+</table>

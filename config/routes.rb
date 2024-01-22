@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/new'
-  end
   scope module: 'public' do
   root to: 'homes#top'
   get '/about' => "homes#about", as: 'about'
   resources :posts
+  end
+
+  namespace :admin do
+    resources :categories, only: [:index, :create, :edit, :update]
   end
 
   #顧客用

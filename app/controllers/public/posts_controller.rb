@@ -1,8 +1,10 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_enduser!
   def index
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -14,7 +16,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.end_user_id = current_enduser.id
+    @post.enduser_id = current_enduser.id
     @post.save
     redirect_to post_path(@post.id)
   end
@@ -22,6 +24,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:category, :field, :references, :study_method, :total_study_time, :achienvement)
+    params.require(:post).permit(:image, :category_id, :field, :references, :study_method, :total_study_time, :achievement)
   end
 end

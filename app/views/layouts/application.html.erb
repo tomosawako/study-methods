@@ -24,9 +24,18 @@
             <ul class="navbar-nav ml-auto">
               <%if enduser_signed_in? %>
               <li class="nav-item">
+                <%=link_to "新規投稿", new_post_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
+                <%=link_to "投稿一覧", posts_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
                 <%=link_to "ログアウト", destroy_enduser_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
               <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%=link_to "科目・資格一覧", admin_categories_path, class: "nav-link text-dark" %>
+              </li>
               <li class="nav-item">
                 <%=link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>

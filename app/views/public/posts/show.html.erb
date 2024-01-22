@@ -1,2 +1,15 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container"></div>
+<div class="post-detail py-5 bg-light">
+  <div class="container">
+    <div class="card mx-auto shadow-lg">
+      <p><%= image_tag @post.get_image %></p>
+      <p>科目・資格名:<%= @post.category.name %></p>
+      <p><%= @post.field %></p>
+      <p><%= @post.references %></p>
+      <p><%= @post.study_method %></p>
+      <p><%= @post.total_study_time %></p>
+      <p><%= @post.achievement %></p>
+      <p><%= @post.enduser.name %></p>
+    </div>
+  </div>
+</div>
