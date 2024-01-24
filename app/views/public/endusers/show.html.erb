@@ -1,0 +1,48 @@
+<div class="container"></div>
+<!--- ユーザープロフィール -->
+<div>
+    <%= image_tag @enduser.get_profile_image(100,100) %>
+  <h5><%= @enduser.name %></h5>
+  <h6><%= @enduser.email %></h6>
+  <% if @enduser == current_enduser %>
+  <%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %>
+  <% end %>
+</div>
+
+<!--- ユーザーの投稿一覧 -->
+<div　calss="card-list-container py-5">
+  <% @posts.each do |post| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to post_path(post.id) do %>
+      <% image_tag post.get_image %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3">
+          <%= image_tag post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
+        </div>
+        <div class="col-9">
+          <p class="card-title">
+            <b>科目・資格名</b>:<%= post.category.name %>
+          </p>
+          <p class="card-text">
+            <b>分野</b>:<%= post.field %>
+          </p>
+          <p class="card-text">
+            <b>参考書・アプリ</b>:<%= post.references %>
+          </p>
+          <p class="card-text">
+            <b>勉強方法</b>:<%= post.study_method %>
+          </p>
+          <p class="card-text">
+            <b>総学習時間</b>:<%= post.total_study_time %>
+          </p>
+          <p class="card-text">
+            <b>成果</b>:<%= post.achievement %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
