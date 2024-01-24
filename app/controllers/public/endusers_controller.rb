@@ -5,4 +5,8 @@ class Public::EndusersController < ApplicationController
     @enduser = Enduser.find(params[:id])
     @posts = @enduser.posts
   end
+
+  def edit
+    @enduser = Enduser.find(params[:id])
+  end
 end

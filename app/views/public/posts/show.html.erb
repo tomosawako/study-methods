@@ -1,15 +1,47 @@
 <div class="container"></div>
-<div class="post-detail py-5 bg-light">
-  <div class="container">
-    <div class="card mx-auto shadow-lg">
-      <p><%= image_tag @post.get_image %></p>
-      <p>科目・資格名:<%= @post.category.name %></p>
-      <p><%= @post.field %></p>
-      <p><%= @post.references %></p>
-      <p><%= @post.study_method %></p>
-      <p><%= @post.total_study_time %></p>
-      <p><%= @post.achievement %></p>
-      <p><%= @post.enduser.name %></p>
+<div class="card w-50 mx-auto mt-4 shadow-lg">
+  <%= link_to post_path(@post.id) do %>
+    <% image_tag @post.get_image %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title">
+      <b>科目・資格名</b>: <%= @post.category.name %>
+    </h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <b>分野</b>: <%= @post.field %>
+    </li>
+    <li class="list-group-item">
+      <b>参考書・アプリ</b>: <%= @post.references %>
+    </li>
+    <li class="list-group-item">
+      <b>勉強方法</b>: <%= @post.study_method %>
+    </li>
+    <li class="list-group-item">
+      <b>総学習時間</b>: <%= @post.total_study_time %>
+    </li>
+    <li class="list-group-item">
+      <b>成果</b>: <%= @post.achievement %>
+    </li>
+  </ul>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= image_tag @post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
+      </div>
+      <div class="col-sm-9">
+        <span>
+          <%= link_to enduser_path(@post.enduser.id) do %> <i class="fas fa-user"></i> By <%= @post.enduser.name %> |
+          <% end %>
+        </span>
+        <span><%= @post.created_at.strftime('%Y/%m/%d') %> |</span>
+        <% if @post.enduser = current_enduser %>
+        <br>
+        <span><%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-success" %></span>
+        <span class="ml-1"><%= link_to "削除", post_path(@post.id), method: :delete, "date-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
