@@ -7,7 +7,7 @@
         <div class="mx-auto text-center">
           <p>名前・メールアドレス・パスワードを入力してください。</p>
         </div>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= form_with model: @enduser, url: enduser_registration_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
