@@ -1,13 +1,14 @@
-<div class="container"></div>
 <!--- ユーザープロフィール -->
 <div>
-    <%= image_tag @enduser.get_profile_image(100,100) %>
+  <h4 class="mt-5 mb-2">ユーザープロフィール</h4>
+  <%= image_tag @enduser.get_profile_image(100,100) %>
   <h5><%= @enduser.name %></h5>
-  <h6><%= @enduser.email %></h6>
   <% if @enduser == current_enduser %>
+  <h6><%= @enduser.email %></h6>
   <%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %>
   <% end %>
 </div>
 
+<h5 class="mt-5"><%= @enduser.name %>さんの投稿一覧</h5>
 <!--- ユーザーの投稿一覧 -->
 <%= render 'public/posts/list', posts: @posts %>

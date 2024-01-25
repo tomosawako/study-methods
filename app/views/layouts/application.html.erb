@@ -62,12 +62,15 @@
       </nav>
     </header>
     <main>
-      <% if notice.present? %>
-      <p id="notice"><%= notice %></p>
-      <% end %>
-      <% if alert.present? %>
-      <p id="alert"><%= alert %></p>
-      <% end %>
+      <div class="container">
+        <!-- エラーメッセージ -->
+        <% if notice.present? %>
+        <p id="notice"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+        <p id="alert"><%= alert %></p>
+        <% end %>
+      </div>
       <%= yield %>
     </main>
     <footer></footer>

@@ -21,7 +21,7 @@
         <b>勉強方法</b>: <%= post.study_method %>
       </li>
       <li class="list-group-item">
-        <b>総学習時間</b>: <%= post.total_study_time %>
+        <b>総学習時間</b>: <%= post.total_study_time %>時間
       </li>
       <li class="list-group-item">
         <b>成果</b>: <%= post.achievement %>
@@ -29,11 +29,13 @@
     </ul>
     <div class="card-footer">
       <div class="row">
-        <div class="col-sm-3">
-          <%= image_tag post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
+        <div class="col-sm-2">
+          <%= image_tag post.enduser.get_profile_image(100,100), class:"rounded-circle" %>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
+          <%= link_to enduser_path(post.enduser.id) do %>
           <span><i class="fas fa-user"></i> By <%= post.enduser.name %> | </span>
+          <% end %>
           <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
           <sapn><i class="fa-regular fa-comment-dots"></i> | </sapn>
           <span><i class="fa-regular fa-heart"></i></span>

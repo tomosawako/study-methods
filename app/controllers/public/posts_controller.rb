@@ -2,6 +2,11 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_enduser!
 
   def index
+    @posts = Post.page(params[:page])
+  end
+
+  def new
+    @post = Post.new
   end
 
   def show
@@ -9,10 +14,7 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-  end
-
-  def new
-    @post = Post.new
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -20,6 +22,18 @@ class Public::PostsController < ApplicationController
     @post.enduser_id = current_enduser.id
     @post.save
     redirect_to post_path(@post.id)
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update(post_params)
+    redirect_to post_path(post.id)
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 
   private
