@@ -1,8 +1,19 @@
+<!-- エラーーメッセージ -->
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<!-- 新規投稿フォーム -->
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
       <div class="form-body p-4">
-        <%= form_with model: @post, method: :patch do |f| %>
+        <%= form_with model: @post, method: :post do |f| %>
         <div class="row">
           <%= f.label :category, "科目・資格名", class:"control-label mr-3" %>
           <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name), class: "form-select" %>
@@ -33,7 +44,7 @@
        <div class="row my-4">
           <%= f.file_field :image, accept: "image/*" %>
         </div>
-       <%= f.submit '変更を保存', class:"btn btn-success btn-block btn-info mt-4" %>
+       <%= f.submit '投稿', class:"btn btn-success btn-block btn-info mt-4" %>
        <% end %>
       </div>
     </div>

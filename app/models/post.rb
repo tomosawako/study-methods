@@ -3,6 +3,13 @@ class Post < ApplicationRecord
   belongs_to :category
   has_one_attached :image
 
+  validates :category_id, presence: true
+  validates :field, presence: true
+  validates :references, presence: true
+  validates :study_method, presence: true
+  validates :total_study_time, presence: true
+  validates :achievement, presence: true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -11,3 +18,7 @@ class Post < ApplicationRecord
     image
   end
 end
+
+
+
+

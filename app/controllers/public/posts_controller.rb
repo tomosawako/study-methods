@@ -20,8 +20,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.enduser_id = current_enduser.id
-    @post.save
-    redirect_to post_path(@post.id)
+    if @post.save
+      redirect_to post_path(@post.id)
+    else
+      render :new
+    end
   end
 
   def update
