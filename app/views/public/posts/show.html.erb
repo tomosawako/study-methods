@@ -1,5 +1,5 @@
 <div class="container"></div>
-<div class="card w-50 mx-auto mt-4 shadow-lg">
+<div class="card w-50 mx-auto mt-4 shadow-lg p-3">
   <%= link_to post_path(@post.id) do %>
     <% image_tag @post.get_image %>
   <% end %>
@@ -25,7 +25,7 @@
       <b>成果</b>: <%= @post.achievement %>
     </li>
   </ul>
-  <div class="card-footer">
+  <div class="card-body">
     <div class="row">
       <div class="col-sm-3">
         <%= image_tag @post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
@@ -43,5 +43,34 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <hr>
+  <div class="card-text">
+    <h5 class="ml-2">
+      <%= @post.post_comments.count %>件コメント
+    </h5>
+    <hr>
+    <%= @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
+    <%= post_comment.enduser.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% end %>
+  </div>
+  <div class="card-text">
+    <div class="form-group">
+      <%= form_with model: [@post, @post_comment] do |f| %>
+      <%= f.label :comment, "コメントする", class:"control-label my-1" %>
+      <%= f.text_area :comment, class: "form-control", placeholder: "コメントをここに" %>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-info float-right" %>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
   </div>
 </div>

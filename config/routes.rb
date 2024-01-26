@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   }
 
   scope module: 'public' do
-  root to: 'homes#top'
-  get '/about' => "homes#about", as: 'about'
-  resources :posts
-  resources :endusers, only: [:show, :edit, :update]
+    root to: 'homes#top'
+    get '/about' => "homes#about", as: 'about'
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+    end
+    resources :endusers, only: [:show, :edit, :update]
   end
 
   namespace :admin do

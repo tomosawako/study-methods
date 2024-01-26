@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :enduser
   belongs_to :category
+  has_many :post_comments, dependent: :destroy
   has_one_attached :image
 
   validates :category_id, presence: true
