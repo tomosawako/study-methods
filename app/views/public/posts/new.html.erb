@@ -1,12 +1,5 @@
 <!-- エラーーメッセージ -->
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'error_message', post: @post %>
 
 <!-- 新規投稿フォーム -->
 <div class="container">
@@ -20,7 +13,9 @@
         </div>
         <div class="row my-1">
           <%= f.label :field, "分野", class:"control-label" %>
-          <%= f.text_field :field,class:"form-control", placeholder: "例：二次関数" %>
+          <div class="input-group">
+            <%= f.text_field :field,class:"form-control", value: "", placeholder: "例：二次関数" %>
+          </div>
         </div>
        <div class="row my-1">
          <%= f.label :references, "使用参考書・アプリ", class:"control-label my-1" %>
