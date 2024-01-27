@@ -3,7 +3,10 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:keyword].present?
-      @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").page(params[:page])
+      @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").
+        or(Post.where("reference_book LIKE?", "%#{params[:keyword]}%")).
+          or(Post.where("study_method LIKE?", "%#{params[:keyword]}%")).
+            or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page])
       @keyword = params[:keyword]
     else
       @posts = Post.page(params[:page])
