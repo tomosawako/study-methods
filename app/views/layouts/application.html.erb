@@ -35,6 +35,10 @@
               <li class="nav-item">
                 <%=link_to "ログアウト", destroy_enduser_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
+              <%=form_with url: posts_path, method: :get do |f| %>
+              <%= f.text_field :"keyword" %>
+              <%= f.submit "検索", class:"btn btn-sm btn-primary ml-1" %>
+            <% end %>
               <% elsif admin_signed_in? %>
               <li class="nav-item">
                 <%=link_to "科目・資格一覧", admin_categories_path, class: "nav-link text-dark" %>

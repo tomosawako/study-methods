@@ -2,7 +2,12 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_enduser!
 
   def index
-    @posts = Post.page(params[:page])
+    if params[:keyword].present?
+      @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").page(params[:page])
+      @keyword = params[:keyword]
+    else
+      @posts = Post.page(params[:page])
+    end
   end
 
   def new
