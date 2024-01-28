@@ -12,6 +12,7 @@ class Public::PostsController < ApplicationController
     elsif params[:category_id].present?
       @category_id = params[:category_id]
       @posts = Post.where(category_id: @category_id).page(params[:page])
+      @category = Category.find(params[:category_id])
     else
       @posts = Post.page(params[:page])
     end
