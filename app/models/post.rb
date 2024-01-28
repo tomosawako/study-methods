@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   validates :category_id, presence: true
   validates :field, presence: true
-  validates :references, presence: true
+  validates :reference_book, presence: true
   validates :study_method, presence: true
   validates :total_study_time, presence: true
   validates :achievement, presence: true

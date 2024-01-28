@@ -1,2 +1,15 @@
-<!--- 投稿一覧 -->
-<%= render 'list', posts: @posts %>
+<div class="container">
+  <div class-"row">
+    <div class="col-3">
+      <!--- カテゴリ(科目・資格検索) -->
+      <%= render 'search_category', categories: @categories %>
+    </div>
+    <div class="col-9">
+      <!--- 投稿一覧 -->
+      <%= render 'list', posts: @posts %>
+    </div>
+  </div>
+</div>
+
+
+

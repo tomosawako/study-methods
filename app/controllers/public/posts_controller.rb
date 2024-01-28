@@ -2,12 +2,16 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_enduser!
 
   def index
+    @categories = Category.all
     if params[:keyword].present?
       @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").
         or(Post.where("reference_book LIKE?", "%#{params[:keyword]}%")).
           or(Post.where("study_method LIKE?", "%#{params[:keyword]}%")).
             or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page])
       @keyword = params[:keyword]
+    elsif params[:category_id].present?
+      @category_id = params[:category_id]
+      @posts = Post.where(category_id: @category_id).page(params[:page])
     else
       @posts = Post.page(params[:page])
     end
@@ -54,6 +58,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :category_id, :field, :references, :study_method, :total_study_time, :achievement)
+    params.require(:post).permit(:image, :category_id, :field, :reference_book, :study_method, :total_study_time, :achievement)
   end
 end
