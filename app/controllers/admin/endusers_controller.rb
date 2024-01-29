@@ -6,8 +6,11 @@ class Admin::EndusersController < ApplicationController
   end
 
   def show
+    @enduser = Enduser.find(params[:id])
+    #@posts = @enduser.posts.page(params[:page])
   end
 
   def edit
+    @enduser = Enduser.find(params[:id])
   end
 end

@@ -42,6 +42,9 @@
               </div>
               <% elsif admin_signed_in? %>
               <li class="nav-item">
+                <%=link_to "ユーザーー覧", admin_endusers_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="nav-item">
                 <%=link_to "科目・資格一覧", admin_categories_path, class: "nav-link text-dark" %>
               </li>
               <li class="nav-item">
