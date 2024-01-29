@@ -22,7 +22,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <%if enduser_signed_in? %>
+              <% if enduser_signed_in? %>
               <li class="nav-item">
                 <%=link_to "マイページ", enduser_path(current_enduser.id), class: "nav-link text-dark" %>
               </li>
@@ -40,7 +40,6 @@
                 <%= f.text_field :"keyword", placeholder: "\uf002 キーワード検索", class: "fas" %>
                 <% end %>
               </div>
-
               <% elsif admin_signed_in? %>
               <li class="nav-item">
                 <%=link_to "科目・資格一覧", admin_categories_path, class: "nav-link text-dark" %>

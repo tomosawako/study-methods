@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => "homes#about", as: 'about'
     resources :posts do
-      resource :favorite, omly: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :endusers, only: [:show, :edit, :update]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories, only: [:index, :create, :edit, :update]
+    resources :endusers, only: [:index, :show, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

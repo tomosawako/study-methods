@@ -1,0 +1,28 @@
+<h4 class="text-center my-5 mx-5">登録ユーザー一覧</h4>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th>ユーザーID</th>
+            <th>ユーザー名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+      </thead>
+      <% @endusers.each do |enduser| %>
+  <tr>
+    <td><%= enduser.id %></td>
+    <td><%= enduser.name %></td>
+    <td><%= enduser.email %></td>
+    <td><%= enduser.is_active %></td>
+  </tr>
+  <% end %>
+</table>
+    </div>
+  </div>
+</div>
+
