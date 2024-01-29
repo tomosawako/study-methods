@@ -36,6 +36,21 @@
           <% end %>
         </span>
         <span><%= @post.created_at.strftime('%Y/%m/%d') %> |</span>
+        <span>
+          <i class="fa-regular fa-comment-dots"></i>
+          <%= @post.post_comments.count %> |
+        </span>
+        <span>
+          <% if @post.favorited_by?(current_enduser) %>
+            <%= link_to post_favorite_path(@post), method: :delete do %>
+            <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorite_path(@post), method: :post do %>
+            <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
+            <% end %>
+          <% end %>
+        </span>
         <% if @post.enduser == current_enduser %>
         <br>
         <span><%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-success" %></span>

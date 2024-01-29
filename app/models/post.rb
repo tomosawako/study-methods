@@ -19,6 +19,11 @@ class Post < ApplicationRecord
     end
     image
   end
+
+  def favorited_by?(enduser)
+    favorites.exists?(enduser_id: enduser.id)
+  end
+
 end
 
 

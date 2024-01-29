@@ -73,16 +73,19 @@ ActiveRecord::Schema.define(version: 2024_01_28_134030) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "enduser_id"
+    t.integer "enduser_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["enduser_id", "post_id"], name: "index_favorites_on_enduser_id_and_post_id", unique: true
+    t.index ["enduser_id"], name: "index_favorites_on_enduser_id"
+    t.index ["post_id"], name: "index_favorites_on_post_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "enduser_id"
-    t.text "comment"
+    t.integer "post_id", null: false
+    t.integer "enduser_id", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -102,4 +105,6 @@ ActiveRecord::Schema.define(version: 2024_01_28_134030) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favorites", "endusers"
+  add_foreign_key "favorites", "posts"
 end
