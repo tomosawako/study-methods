@@ -1,0 +1,62 @@
+<!--- キーワード検索用ののタイトル -->
+
+<!--- 投稿一覧 -->
+<% posts.each do |post| %>
+<div class="card border-warning w-75 mt-4 shadow-lg p-3">
+  <%= link_to admin_post_path(post.id) do %>
+  <% image_tag post.get_image %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title">
+      <b>科目・資格名</b>: <%= post.category.name %>
+    </h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <b>分野</b>: <%= post.field %>
+    </li>
+    <li class="list-group-item">
+      <b>参考書・アプリ</b>: <%= post.reference_book %>
+    </li>
+    <li class="list-group-item">
+      <b>勉強方法</b>: <%= post.study_method %>
+    </li>
+    <li class="list-group-item">
+      <b>総学習時間</b>: <%= post.total_study_time %>時間
+    </li>
+    <li class="list-group-item">
+      <b>成果</b>: <%= post.achievement %>
+    </li>
+  </ul>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= image_tag post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
+      </div>
+      <div class="col-sm-10">
+        <%= link_to admin_enduser_path(post.enduser.id) do %>
+        <span><i class="fas fa-user"></i> By <%= post.enduser.name %> | </span>
+        <% end %>
+        <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
+        <span>
+          <%= link_to admin_post_path(post.id) do %>
+          <i class="fa-regular fa-comment-dots"></i>
+          <%= post.post_comments.count %> |
+          <% end %>
+        </span>
+        <span>
+          <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+        </span>
+      </div>
+    </div>
+    <P class="mt-2"><%= link_to "#{post.post_comments.count}件コメント", admin_post_path(post.id) %></P>
+  </div>
+</div>
+<% end %>
+<%= paginate posts %>
+
+
+
+
+
+
