@@ -59,8 +59,7 @@ class Public::PostsController < ApplicationController
   def favorites
     @categories = Category.all
     @enduser = Enduser.find(params[:enduser_id])
-    favorites = Favorite.where(enduser_id: current_enduser.id).pluck(:post_id)
-    @favorite_list = Post.find(favorites)
+    @favorites_posts = current_enduser.favorite_posts.includes(:enduser).page(params[:page])
   end
 
   private

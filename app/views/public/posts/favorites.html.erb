@@ -1,15 +1,15 @@
-<h4 class="text-center my-5">
-  <%= @enduser.name %>さんのお気に入り投稿一覧
-</h4>
 <div class="card-list container">
   <div class-"d-flex row">
     <div class="col-sm-3">
       <!--- カテゴリ(科目・資格検索) -->
       <%= render 'search_category', categories: @categories %>
     </div>
-    <div class="col-sm-9">
-      <% if @favorite_list.present? %>
-        <% @favorite_list.each do |favorite| %>
+    <% if @favorites_posts.present? %>
+      <h4 class="text-center my-5">
+        <%= @enduser.name %>さんのお気に入り投稿一覧
+      </h4>
+      <div class="col-sm-9">
+        <% @favorites_posts.each do |favorite| %>
         <div class="card border-warning w-100 mx-auto mt-4 shadow-lg p-3">
           <%= link_to post_path(favorite.id) do %>
           <% image_tag favorite.get_image %>
@@ -65,9 +65,12 @@
           </div>
           <P class="mt-2"><%= link_to "#{favorite.post_comments.count}件コメント", post_path(favorite.id) %></P>
         </div>
-        <% end %>
       </div>
       <% end %>
-    </div>
+      </div>
+    <% else %>
+    　<h4>お気に入りした投稿はありません</h4>
+    <% end %>
   </div>
 </div>
+<%= paginate @favorites_posts %>
