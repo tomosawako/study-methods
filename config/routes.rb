@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'posts/show'
-    get 'posts/edit'
-  end
   #顧客用
   devise_for :endusers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -18,6 +14,7 @@ Rails.application.routes.draw do
   scope module: 'public' do
     root to: 'homes#top'
     get '/about' => "homes#about", as: 'about'
+    get 'posts/favorites'
     resources :posts do
       resource :favorite, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
@@ -26,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get 'homes/top'
     resources :categories, only: [:index, :create, :edit, :update]
     resources :endusers, only: [:index, :show, :edit, :update]
     resources :posts, only: [:show, :edit, :update]

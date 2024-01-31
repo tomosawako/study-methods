@@ -4,8 +4,13 @@
   <%= image_tag @enduser.get_profile_image(100,100) %>
   <h5><%= @enduser.name %></h5>
   <% if @enduser == current_enduser %>
-  <h6><%= @enduser.email %></h6>
-  <%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %>
+  <p><%= @enduser.email %></p>
+  <p>
+    <%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %>
+  </p>
+  <p>
+    <%= link_to "お気に入り投稿一覧", posts_favorites_path(enduser_id: @enduser.id) %>
+  </p>
   <% end %>
 </div>
 
@@ -14,3 +19,5 @@
 <div　calss="card-list-container py-5">
   <%= render 'public/posts/list', posts: @posts %>
 </div>
+
+

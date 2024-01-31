@@ -56,6 +56,13 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def favorites
+    @categories = Category.all
+    @enduser = Enduser.find(params[:enduser_id])
+    favorites = Favorite.where(enduser_id: current_enduser.id).pluck(:post_id)
+    @favorite_list = Post.find(favorites)
+  end
+
   private
 
   def post_params
