@@ -1,2 +1,9 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class-"d-flex row">
+    <div class="col">
+      <h3 class="text-center mt-5">全<%= @post_all.count %>件の投稿</h3>
+      <!--- 投稿一覧 -->
+      <%= render 'admin/posts/list', posts: @posts %>
+    </div>
+  </div>
+</div>
