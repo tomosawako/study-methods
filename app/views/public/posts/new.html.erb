@@ -1,12 +1,5 @@
 <!-- エラーーメッセージ -->
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li class="alert alert-danger" role="alert"><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'error_message', post: @post %>
 
 <!-- 新規投稿フォーム -->
 <div class="container">

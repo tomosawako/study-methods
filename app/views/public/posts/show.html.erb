@@ -44,7 +44,7 @@
           <% if @post.favorited_by?(current_enduser) %>
             <%= link_to post_favorite_path(@post), method: :delete do %>
             <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
-            <% end %>
+          <% end %>
           <% else %>
             <%= link_to post_favorite_path(@post), method: :post do %>
             <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
@@ -75,22 +75,20 @@
           <%= post_comment.created_at.strftime('%Y/%m/%d') %>
         </h6>
         <%= post_comment.comment %><br>
-        <% if post_comment.enduser == current_enduser %>
         <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
-        <% end %>
       </div>
-      <% end %>
     </div>
+    <% end %>
     <% end %>
   </div>
   <hr>
   <div class="card-text">
+    <%= form_with model: [@post, @post_comment] do |f| %>
     <div class="form-group">
-      <%= form_with model: [@post, @post_comment] do |f| %>
       <%= f.label :comment, "コメントする", class:"control-label my-1" %>
       <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントをここに" %>
     </div>
-    <%= f.submit "送信する", class: "btn btn-info float-right" %>
+    <%= f.submit "送信する", class: "btn btn-info float-right", local:true %>
     <% end %>
   </div>
   </div>
