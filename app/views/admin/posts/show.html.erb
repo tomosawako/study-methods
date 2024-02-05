@@ -66,19 +66,19 @@
     <% end %>
   </div>
 </div>
+<%= form_with model: @post, url: admin_post_path(@post), method: :patch do |f| %>
 <p class="status text-center mt-3">
   投稿ステータス
-  <% if @post.is_active %>
-    <span class="text-success ml-3">
-      <b>公開</b>
-    </span>
-  <% else %>
-    <span class="success">
-      <b>非公開</b>
-    </span>
-  <% end %>
-  　<span>
-      <%= link_to "編集", edit_admin_post_path(@post.id), class: "btn btn-sm btn-primary" %>
-    </span>
+  <span class="text-success ml-3">
+    <%= f.radio_button :is_active, true, class:"ml-4" %>
+    <%= f.label :is_active, "公開", value: "ture" %>
+  </span>
+  <span class="text-secondary ml-3">
+    <%= f.radio_button :is_active, false, class:"ml-2" %>
+    <%= f.label :is_active, "非公開", value: "false" %>
+  </span>
+  <span>
+    <%= f.submit "変更を保存", class:"btn btn-sm btn-success ml-4" %>
+  </span>
 </p>
-
+<% end %>

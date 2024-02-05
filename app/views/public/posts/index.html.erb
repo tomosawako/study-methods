@@ -5,6 +5,16 @@
       <%= render 'search_category', categories: @categories %>
     </div>
     <div class="col-sm-9">
+      <!--- キーワード検索用ののタイトル -->
+      <% if params[:keyword].present? %>
+        <h4 class="text-center mt-4">"<%= @keyword %>"の検索結果</h4>
+        <!--- カテゴリ検索用のタイトル -->
+      <% elsif params[:category_id].present? %>
+        <h4 class="text-center mt-4">"<%= @category.name %>"の投稿一覧</h4>
+      <% else %>
+        <!--- 全ての投稿一覧用のタイトル -->
+        <h4 class="text-center mt-4">全科目・資格の投稿一覧</h4>
+      <% end %>
       <!--- 投稿一覧 -->
       <%= render 'list', posts: @posts %>
     </div>

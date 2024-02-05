@@ -7,14 +7,14 @@ class Public::PostsController < ApplicationController
       @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").
         or(Post.where("reference_book LIKE?", "%#{params[:keyword]}%")).
           or(Post.where("study_method LIKE?", "%#{params[:keyword]}%")).
-            or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page])
+            or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page]).order(created_at: :desc)
       @keyword = params[:keyword]
     elsif params[:category_id].present?
       @category_id = params[:category_id]
-      @posts = Post.where(category_id: @category_id).page(params[:page])
+      @posts = Post.where(category_id: @category_id).page(params[:page]).order(created_at: :desc)
       @category = Category.find(params[:category_id])
     else
-      @posts = Post.page(params[:page])
+      @posts = Post.page(params[:page]).order(created_at: :desc)
     end
   end
 

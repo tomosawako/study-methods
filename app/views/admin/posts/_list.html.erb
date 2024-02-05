@@ -27,6 +27,14 @@
     <li class="list-group-item">
       <b>成果</b>: <%= post.achievement %>
     </li>
+    <li class="list-group-item">
+      <b>投稿ステータス</b>:
+      <% if post.is_active %>
+        <span class="text-success">公開</span>
+      <% else %>
+        <span class="text-secondary">非公開</p>
+      <% end %>
+    </li>
   </ul>
   <div class="card-body">
     <div class="row">

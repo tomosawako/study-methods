@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get 'homes/top'
     resources :categories, only: [:index, :create, :edit, :update]
     resources :endusers, only: [:index, :show, :edit, :update]
-    resources :posts, only: [:show, :edit, :update]
+    resources :posts, only: [:show, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

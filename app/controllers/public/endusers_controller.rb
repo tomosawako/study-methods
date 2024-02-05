@@ -3,7 +3,7 @@ class Public::EndusersController < ApplicationController
 
   def show
     @enduser = Enduser.find(params[:id])
-    @posts = @enduser.posts.page(params[:page])
+    @posts = @enduser.posts.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
