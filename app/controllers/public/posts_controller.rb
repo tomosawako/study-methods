@@ -5,9 +5,9 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
     if params[:keyword].present?
       @posts = Post.where("field LIKE?", "%#{params[:keyword]}%").
-        or(Post.where("reference_book LIKE?", "%#{params[:keyword]}%")).
-          or(Post.where("study_method LIKE?", "%#{params[:keyword]}%")).
-            or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page]).order(created_at: :desc)
+                           or(Post.where("reference_book LIKE?", "%#{params[:keyword]}%")).
+                           or(Post.where("study_method LIKE?", "%#{params[:keyword]}%")).
+                           or(Post.where("achievement LIKE?", "%#{params[:keyword]}%")).page(params[:page]).order(created_at: :desc)
       @keyword = params[:keyword]
     elsif params[:category_id].present?
       @category_id = params[:category_id]
@@ -42,8 +42,8 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update(post_params)
+    post = Post.find(params[:id])
+    if post.update(post_params)
       redirect_to post_path(@post.id)
     else
       render :edit
