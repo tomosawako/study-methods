@@ -11,6 +11,7 @@
         <!--- カテゴリ検索用のタイトル -->
       <% elsif params[:category_id].present? %>
         <h4 class="text-center mt-4">"<%= @category.name %>"の投稿一覧</h4>
+        <%= link_to "いいねランキング順", posts_rank_path(category_id: @category.id) %>
       <% else %>
         <!--- 全ての投稿一覧用のタイトル -->
         <h4 class="text-center mt-4">全科目・資格の投稿一覧</h4>
