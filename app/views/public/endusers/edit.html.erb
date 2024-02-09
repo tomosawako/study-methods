@@ -1,32 +1,30 @@
 <h3 class="ml-5 mt-5 mb-5">プロフィール編集</h3>
 <div class="container">
-  <form>
-    <%= form_with model: @enduser, method: :patch do |f| %>
-    <div class="row mb-4">
-      <label for="inputName", class:"col-sm-3 col-form-label" >ユーザー名</label>
-      <div class="col-sm-9">
-        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前" %>
-      </div>
+  <%= form_with model: @enduser, method: :patch do |f| %>
+  <div class="row mb-4">
+    <label for="inputName", class:"col-sm-3 col-form-label" >ユーザー名</label>
+    <div class="col-sm-9">
+      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前" %>
     </div>
-    <div class="row mb-4">
-      <label for="inputImage", class: "col-sm-3 col-form-label">プルフィール画像</label>
-      <div class="col-sm-9">
-        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-      </div>
+  </div>
+  <div class="row mb-4">
+    <label for="inputImage", class: "col-sm-3 col-form-label">プルフィール画像</label>
+    <div class="col-sm-9">
+      <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
     </div>
-    <div class="row mb-4">
-      <label for="inputEmail", class: "col-sm-3 col-form-label">メールアドレス</label>
-      <div class="col-sm-9">
-        <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
-      </div>
+  </div>
+  <div class="row mb-4">
+    <label for="inputEmail", class: "col-sm-3 col-form-label">メールアドレス</label>
+    <div class="col-sm-9">
+      <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
     </div>
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
-      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
     </div>
-    <% end %>
-  </form>
+  </div>
+  <% end %>
 </div>
 

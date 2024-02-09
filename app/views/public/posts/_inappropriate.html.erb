@@ -1,29 +1,10 @@
-<div class="container">
-  <div class-"d-flex row">
-    <div class="col-sm-3">
-      <!--- カテゴリ(科目・資格検索) -->
-      <%= render 'search_category', categories: @categories %>
-    </div>
-    <div class="col-sm-9">
-      <h3 class="text-center">"<%= @category.name %>"のお気に入り数ランキング</h3>
-      <!--- いいね数ランキング -->
-<% @post_ranks.each.with_index(1) do |post,i| %>
-<% if post.is_active %>
-<h5 class="text-center mt-4">
-  <% case i when 1 %>
-    <i class="fas fa-crown" style='color: gold;'></i>第<%= i %>位
-  <% when 2 %>
-    <i class="fas fa-crown" style='color: silver;'></i>第<%= i %>位
-  <% when 3 %>
-    <i class="fas fa-crown" style='color: orange;'></i>第<%= i %>位
-  <% else %>
-    第<%= i %>位
-  <% end %>
-</h5>
+<!--- 投稿一覧 -->
+<% posts.each do |post| %>
+<% if post.is_active == false %>
 <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
-  <%= link_to post_path(post.id) do %>
-  <% image_tag post.get_image %>
-  <% end %>
+  <p class="text-danger">
+    不適切な投稿だと判断し、非公開となりました
+  </p>
   <div class="card-body">
     <h5 class="card-title">
       <b>科目・資格名</b>: <%= post.category.name %>
@@ -78,13 +59,4 @@
 </div>
 <% end %>
 <% end %>
-
-
-
-
-
-
-
-
-    </div>
-
+<%= paginate posts %>
