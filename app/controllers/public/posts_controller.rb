@@ -44,7 +44,7 @@ class Public::PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     if post.update(post_params)
-      redirect_to post_path(@post.id)
+      redirect_to post_path(post.id)
     else
       render :edit
     end
@@ -66,7 +66,7 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
     @category_id = params[:category_id]
     @category = Category.find(params[:category_id])
-    @post_ranks = Post.joins(:favorites).where(category_id: @category_id).group(:post_id).order('COUNT(post_id) DESC')
+    @post_ranks = Post.joins(:favorites).where(category_id: @category_id).group(:post_id).order('COUNT(post_id) DESC').page(params[:page])
   end
 
   private
