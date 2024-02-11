@@ -29,6 +29,8 @@
 ​
 ## 使用素材
 フリーイラスト素材として以下を使用
+- ぱくたそ (https://www.pakutaso.com/)
+- O-DAN(https://o-dan.net/ja/)
 
 ## 実装機能リスト
 https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjgKCk/edit?usp=sharing

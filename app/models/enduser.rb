@@ -10,6 +10,14 @@ class Enduser < ApplicationRecord
 
   has_one_attached :profile_image
 
+  #ゲストログインするためのメソッド
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |enduser|
+      enduser.password = SecureRandom.urlsafe_base64
+      enduser.name = "ゲスト"
+    end
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

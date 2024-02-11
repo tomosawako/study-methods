@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  #ゲストログイン用
+  devise_scope :enduser do
+    post 'endusers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   #管理者用
   devise_for :admin, skip: [:registrations, :passswords], controllers: {
     sessions: "admin/sessions"

@@ -1,7 +1,7 @@
 <div class="container"></div>
 <div class="card border-warning w-50 mx-auto mt-4 shadow-lg p-3">
   <%= link_to post_path(@post.id) do %>
-    <% image_tag @post.get_image %>
+    <% image_tag @post.get_image(300,600) %>
   <% end %>
   <div class="card-body">
     <h5 class="card-title">

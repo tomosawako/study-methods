@@ -29,6 +29,12 @@ class Public::SessionsController < Devise::SessionsController
     posts_path
   end
 
+  def guest_sign_in
+    enduser = Enduser.guest
+    sign_in enduser
+    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   private
 
   # エンドユーザーがアクティブであるかを判断するメソッド

@@ -1,5 +1,13 @@
 class Public::EndusersController < ApplicationController
   before_action :authenticate_enduser!
+  before_action :ensure_normal_enduser, only: :update
+
+  def ensure_normal_enduser
+    enduser = Enduser.find(params[:id])
+    if enduser.email == 'guest@example.com'
+      redirect_to enduser_path(enduser.id), alert: 'ゲストユーザーの更新はできません。'
+    end
+  end
 
   def show
     @enduser = Enduser.find(params[:id])
@@ -11,9 +19,9 @@ class Public::EndusersController < ApplicationController
   end
 
   def update
-    @enduser = Enduser.find(params[:id])
-    @enduser.update(enduser_params)
-    redirect_to enduser_path(@enduser.id)
+    enduser = Enduser.find(params[:id])
+    enduser.update(enduser_params)
+    redirect_to enduser_path(enduser.id)
   end
 
   private
