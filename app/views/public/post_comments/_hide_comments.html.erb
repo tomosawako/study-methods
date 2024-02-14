@@ -1,33 +1,41 @@
-<div class="media border p-1">
+<div class="media border p-1 mt-1">
   <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
   <div class="media-body ml-2">
     <h6 class="mb-1">
       <%= post_comment.enduser.name %>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     </h6>
-      <%= post_comment.comment %><br>
+    <%= post_comment.comment %><br>
+    <% if post_comment.enduser == current_enduser %>
       <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+    <% end %>
   </div>
 </div>
 <% if post_comment.replies.present? %>
-<% post_comment.replies.each do |reply| %>
-  <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
-  <h6 class="mb-1">
-    <%= reply.enduser.name %>
-    <%= reply.created_at.strftime('%Y/%m/%d') %>
-  </h6>
-  <%= reply.comment %><br>
-  <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
-  <% end %>
-  <hr>
-<div class="card-text">
-    <%= form_with model: [@post, comment_reply] do |f| %>
-    <div class="form-group">
-      <%= f.label :comment, "コメントに返信する", class:"control-label my-1" %>
-      <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう" %>
-      <%= f.hidden_field :parent_id, value: post_comment.id %>
+  <div class="media border p-1">
+    <% post_comment.replies.first(1).each do |reply| %>
+    <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
+    <div class="media-body ml-2">
+      <h6 class="mb-1">
+        <%= reply.enduser.name %>
+        <%= reply.created_at.strftime('%Y/%m/%d') %>
+      </h6>
+      <%= reply.comment %><br>
+      <% if reply.enduser == current_enduser %>
+        <%= link_to "返信コメントを削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+      <% end %>
     </div>
-    <%= f.submit "返信する", class: "btn btn-info float-right", local:true %>
-    <% end %>
     <% end %>
   </div>
+<% end %>
+
+<div class="card-text my-1">
+  <%= form_with model: [@post, comment_reply] do |f| %>
+  <div class="form-group">
+    <%= f.label :comment, "コメントに返信する", class:"control-label" %>
+    <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう" %>
+    <%= f.hidden_field :parent_id, value: post_comment.id %>
+  </div>
+  <%= f.submit "返信する", class: "btn btn-info float-right my-1", local:true %>
+  <% end %>
+</div>

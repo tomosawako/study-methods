@@ -1,4 +1,3 @@
-<div class="container"></div>
 <div class="card border-warning w-50 mx-auto mt-4 shadow-lg p-3">
   <%= link_to post_path(@post.id) do %>
     <% image_tag @post.get_image(300,600) %>
@@ -69,7 +68,7 @@
       <%= f.label :comment, "コメントする", class:"control-label my-1" %>
       <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントをここに" %>
     </div>
-    <%= f.submit "送信する", class: "btn btn-info float-right", local:true %>
+    <%= f.submit "送信する", class: "btn btn-info float-right my-1", local:true %>
     <% end %>
   </div>
 </div>
