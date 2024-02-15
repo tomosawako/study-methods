@@ -1,3 +1,4 @@
+<!-- コメント一覧(public/posts/showで使用) -->
 <div class="card-text">
   <h5 class="ml-2">
     <%= post.post_comments.count %>件コメント
@@ -8,9 +9,9 @@
     <%= render 'public/post_comments/hide_comments', post_comment: post_comment, comment_reply: comment_reply %>
     <% end %>
     <% if post.post_comments.where(parent_id: nil).offset(2).any? %>
-    <div class="text-right">
+    <div class="text-center my-2">
       <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
-        もっと見る
+        この投稿に対する全てのコメントを表示する
       </button>
     </div>
     <% end %>

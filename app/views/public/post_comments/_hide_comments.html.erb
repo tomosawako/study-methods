@@ -9,11 +9,28 @@
     <% if post_comment.enduser == current_enduser %>
       <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
     <% end %>
+    <div class="text-right my-2 mr-3">
+      <% if post_comment.replies.count == 0 %>
+        <i class="fa-solid fa-reply" data-toggle="collapse" data-target="#reply-form1" aria-expand="false" aria-controls="example-1">返信</i>
+      <% end %>
+    </div>
   </div>
 </div>
-<% if post_comment.replies.present? %>
-  <div class="media border p-1">
-    <% post_comment.replies.first(1).each do |reply| %>
+
+<div class="collapse" id="reply-form1">
+  <!-- 返信フォーム -->
+  <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
+</div>
+
+<% if post_comment.replies.offset(0).any? %>
+  <div class="text-center my-2">
+    <button class="btn btn-default" data-toggle="collapse" data-target="#comment" aria-expand="false" aria-controls="example-1">
+      このコメントへの返信を表示する
+    </button>
+  </div>
+<div class="collapse" id="comment">
+<% post_comment.replies.offset(0).each do |reply| %>
+<div class="media border p-1">
     <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
     <div class="media-body ml-2">
       <h6 class="mb-1">
@@ -24,18 +41,18 @@
       <% if reply.enduser == current_enduser %>
         <%= link_to "返信コメントを削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
       <% end %>
+      <div class="text-right my-2 mr-3">
+
+        <i class="fa-solid fa-reply" data-toggle="collapse" data-target="#reply-form2" aria-expand="false" aria-controls="example-1">返信</i>
+
     </div>
-    <% end %>
+    </div>
   </div>
+  <% end %>
+  <div class="collapse" id="reply-form2">
+  <!-- 返信フォーム -->
+  <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
+　</div>
+</div>
 <% end %>
 
-<div class="card-text my-1">
-  <%= form_with model: [@post, comment_reply] do |f| %>
-  <div class="form-group">
-    <%= f.label :comment, "コメントに返信する", class:"control-label" %>
-    <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう" %>
-    <%= f.hidden_field :parent_id, value: post_comment.id %>
-  </div>
-  <%= f.submit "返信する", class: "btn btn-info float-right my-1", local:true %>
-  <% end %>
-</div>
