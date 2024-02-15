@@ -1,3 +1,4 @@
+
 <div class="media border p-1 mt-1">
   <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
   <div class="media-body ml-2">
@@ -7,29 +8,32 @@
     </h6>
     <%= post_comment.comment %><br>
     <% if post_comment.enduser == current_enduser %>
-      <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
     <% end %>
     <div class="text-right my-2 mr-3">
       <% if post_comment.replies.count == 0 %>
-        <i class="fa-solid fa-reply" data-toggle="collapse" data-target="#reply-form1" aria-expand="false" aria-controls="example-1">返信</i>
+        <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#reply-form<%=i%>" aria-expand="false" aria-controls="example-1">
+          <i class="fa-solid fa-reply"></i>返信フォーム
+        </button>
       <% end %>
     </div>
   </div>
 </div>
 
-<div class="collapse" id="reply-form1">
+
+<div class="collapse" id="reply-form<%=i%>">
   <!-- 返信フォーム -->
   <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
 </div>
 
 <% if post_comment.replies.offset(0).any? %>
-  <div class="text-center my-2">
-    <button class="btn btn-default" data-toggle="collapse" data-target="#comment" aria-expand="false" aria-controls="example-1">
-      このコメントへの返信を表示する
+  <div class="text-center">
+    <button type="button" class="btn btn-block" data-toggle="collapse" data-target="#comment<%=i%>" aria-expand="false" aria-controls="example-1">
+      <i class="fa-solid fa-circle-arrow-up"></i>への返信コメントを表示
     </button>
   </div>
-<div class="collapse" id="comment">
-<% post_comment.replies.offset(0).each do |reply| %>
+<div class="collapse" id="comment<%=i%>">
+<% post_comment.replies.offset(0).each.with_index(1) do |reply,index| %>
 <div class="media border p-1">
     <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
     <div class="media-body ml-2">
@@ -39,20 +43,22 @@
       </h6>
       <%= reply.comment %><br>
       <% if reply.enduser == current_enduser %>
-        <%= link_to "返信コメントを削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+        <%= link_to "削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
       <% end %>
+      <% if post_comment.replies.count == index %>
       <div class="text-right my-2 mr-3">
-
-        <i class="fa-solid fa-reply" data-toggle="collapse" data-target="#reply-form2" aria-expand="false" aria-controls="example-1">返信</i>
-
-    </div>
+        <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#reply-form-pluss<%=index%>" aria-expand="false" aria-controls="example-1">
+          <i class="fa-solid fa-reply"></i>返信フォーム
+        </button>
+      </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
-  <div class="collapse" id="reply-form2">
+  <div class="collapse" id="reply-form-pluss<%=index%>">
   <!-- 返信フォーム -->
   <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
 　</div>
+　<% end %>
 </div>
 <% end %>
 

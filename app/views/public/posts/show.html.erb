@@ -59,9 +59,6 @@
     </div>
   </div>
   <hr>
-  <!-- コメント一覧 -->
-  <%= render 'public/post_comments/index', post: @post, comment_reply: @comment_reply %>
-  <hr>
   <div class="card-text">
     <%= form_with model: [@post, @post_comment] do |f| %>
     <div class="form-group">
@@ -71,4 +68,8 @@
     <%= f.submit "送信する", class: "btn btn-info float-right my-1", local:true %>
     <% end %>
   </div>
+  <hr>
+  <!-- コメント一覧 -->
+  <%= render 'public/post_comments/index', post: @post, comment_reply: @comment_reply %>
+
 </div>
