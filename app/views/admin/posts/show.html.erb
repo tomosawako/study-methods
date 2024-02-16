@@ -1,27 +1,6 @@
 <div class="card border-warning w-50 mx-auto mt-4 shadow-lg p-3">
-  <% image_tag @post.get_image %>
-  <div class="card-body">
-    <h5 class="card-title">
-      <b>科目・資格名</b>: <%= @post.category.name %>
-    </h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <b>分野</b>: <%= @post.field %>
-    </li>
-    <li class="list-group-item">
-      <b>参考書・アプリ</b>: <%= @post.reference_book %>
-    </li>
-    <li class="list-group-item">
-      <b>勉強方法</b>: <%= @post.study_method %>
-    </li>
-    <li class="list-group-item">
-      <b>総学習時間</b>: <%= @post.total_study_time %>時間
-    </li>
-    <li class="list-group-item">
-      <b>成果</b>: <%= @post.achievement %>
-    </li>
-  </ul>
+  <!--投稿内容-->
+  <%= render 'public/posts/detail', post: @post %>
   <div class="card-body">
     <div class="row">
       <div class="col-sm-3">
@@ -44,25 +23,28 @@
     </div>
   </div>
   <hr>
+  <!-- コメント一覧 -->
   <div class="card-text">
     <h5 class="ml-2">
       <%= @post.post_comments.count %>件コメント
     </h5>
-    <% if @post.post_comments.present? %>
     <hr>
-    <div class="media border p-1">
-      <% @post.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
-      <div class="media-body ml-2">
-        <h6 class="mb-1">
-          <%= post_comment.enduser.name %>
-          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-        </h6>
-        <%= post_comment.comment %><br>
-        <%= link_to "コメントを削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
-      </div>
+    <% if @post.post_comments.present? %>
+      <% @post.post_comments.where(parent_id: nil).first(5).each.with_index do |post_comment,i| %>
+      <%= render 'admin/post_comments/hide_comments', post_comment: post_comment, i: i %>
       <% end %>
-    </div>
+    <% end %>
+    <% if @post.post_comments.where(parent_id: nil).offset(5).any? %>
+      <div class="text-center my-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
+          全てのコメントを表示
+        </button>
+      </div>
+      <div class="collapse" id="example-1">
+        <% @post.post_comments.where(parent_id: nil).offset(5).each.with_index(5) do |post_comment,i| %>
+        <%= render 'admin/post_comments/hide_comments', post_comment: post_comment, i: i %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

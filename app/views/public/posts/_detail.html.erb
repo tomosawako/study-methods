@@ -1,0 +1,26 @@
+<!-- admin/post/show,public/post/showで使用-->
+<%= link_to post_path(post.id) do %>
+<% image_tag post.get_image(300,600) %>
+<% end %>
+<div class="card-body">
+  <h5 class="card-title">
+    <b>科目・資格名</b>: <%= post.category.name %>
+  </h5>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <b>分野</b>: <%= post.field %>
+  </li>
+  <li class="list-group-item">
+    <b>参考書・アプリ</b>: <%= post.reference_book %>
+  </li>
+  <li class="list-group-item">
+    <b>勉強方法</b>: <%= post.study_method %>
+  </li>
+  <li class="list-group-item">
+    <b>総学習時間</b>: <%= post.total_study_time %>時間
+  </li>
+  <li class="list-group-item">
+    <b>成果</b>: <%= post.achievement %>
+  </li>
+</ul>

@@ -4,6 +4,8 @@
     <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう" %>
     <%= f.hidden_field :parent_id, value: post_comment.id %>
   </div>
-  <%= f.submit "返信する", class: "btn btn-info float-right my-1", local:true %>
+  <div class="text-right">
+    <%= f.submit "返信する", class: "btn btn-info my-1", local:true %>
+  </div>
   <% end %>
 </div>
