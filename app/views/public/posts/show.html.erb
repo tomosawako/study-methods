@@ -1,40 +1,6 @@
 <div class="card border-warning w-50 mx-auto mt-4 shadow-lg p-3">
   <!--投稿内容-->
-  <%= render 'detail', post: @post %>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-sm-3">
-        <%= image_tag @post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
-      </div>
-      <div class="col-sm-9">
-        <span>
-          <%= link_to enduser_path(@post.enduser.id) do %> <i class="fas fa-user"></i> By <%= @post.enduser.name %> |
-          <% end %>
-        </span>
-        <span><%= @post.created_at.strftime('%Y/%m/%d') %> |</span>
-        <span>
-          <i class="fa-regular fa-comment-dots"></i>
-          <%= @post.post_comments.count %> |
-        </span>
-        <span>
-          <% if @post.favorited_by?(current_enduser) %>
-            <%= link_to post_favorite_path(@post), method: :delete do %>
-            <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
-          <% end %>
-          <% else %>
-            <%= link_to post_favorite_path(@post), method: :post do %>
-            <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
-            <% end %>
-          <% end %>
-        </span>
-        <% if @post.enduser == current_enduser %>
-        <br>
-        <span><%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-success" %></span>
-        <span class="ml-1"><%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
-        <% end %>
-      </div>
-    </div>
-  </div>
+  <%= render 'list', post: @post %>
   <hr>
   <div class="card-text">
     <%= form_with model: [@post, @post_comment] do |f| %>

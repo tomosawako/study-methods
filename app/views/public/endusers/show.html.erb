@@ -17,8 +17,13 @@
 <h4 class="text-center mt-5"><%= @enduser.name %>さんの投稿一覧</h4>
 <!--- ユーザーの投稿一覧 -->
 <div　calss="card-list-container py-5">
-  <%= render 'public/posts/list', posts: @posts %>
-  <%= render 'public/posts/inappropriate', posts: @posts %>
+  <% @posts.each do |post| %>
+      <div class="card border-warning mx-auto w-50 mt-4 shadow-lg p-3">
+        <%= render 'public/posts/list', post: post %>
+        <%= render 'public/posts/inappropriate', post: post %>
+      </div>
+      <% end %>
+      <div class="text-center">
+        <%= paginate @posts %>
+      </div>
 </div>
-
-

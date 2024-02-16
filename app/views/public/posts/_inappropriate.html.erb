@@ -1,5 +1,4 @@
-<!--- 投稿一覧 -->
-<% posts.each do |post| %>
+<!--- 非公開にされた投稿 -->
 <% if post.is_active == false %>
 <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
   <p class="text-danger">
@@ -30,5 +29,3 @@
   <%= render 'public/posts/info', post: post %>
 </div>
 <% end %>
-<% end %>
-<%= paginate posts %>

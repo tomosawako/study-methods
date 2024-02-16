@@ -1,7 +1,5 @@
-<!--- 投稿一覧 -->
-<% posts.each do |post| %>
+<!--- 投稿内容 -->
 <% if post.is_active %>
-<div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
   <%= link_to post_path(post.id) do %>
   <% image_tag post.get_image(200,400) %>
   <% end %>
@@ -27,12 +25,43 @@
       <b>成果</b>: <%= post.achievement %>
     </li>
   </ul>
-  <%= render 'public/posts/info', post: post %>
-</div>
-<% end %>
-<% end %>
-<%= paginate posts %>
-
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= image_tag post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
+      </div>
+      <div class="col-sm-9">
+        <span>
+          <%= link_to enduser_path(post.enduser.id) do %> <i class="fas fa-user"></i> By <%= post.enduser.name %> |
+          <% end %>
+        </span>
+        <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
+        <span>
+          <%= link_to post_path(post.id) do %>
+          <i class="fa-regular fa-comment-dots"></i>
+          <%= post.post_comments.count %> |
+          <% end %>
+        </span>
+        <span>
+          <% if post.favorited_by?(current_enduser) %>
+            <%= link_to post_favorite_path(post), method: :delete do %>
+            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+          <% end %>
+          <% else %>
+            <%= link_to post_favorite_path(post), method: :post do %>
+            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+            <% end %>
+          <% end %>
+        </span>
+        <% if post.enduser == current_enduser %>
+        <br>
+        <span><%= link_to "編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></span>
+        <span class="ml-1"><%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
 
 
