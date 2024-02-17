@@ -13,8 +13,29 @@
  *= require_tree .
  *= require_self
  */
+.logo{
+  width: 30%;
+  height: 30%;
+}
 
 .img-fluid{
   max-width: 100%;
+  margin: 0;
   height: auto;
+}
+
+.box{
+  position: relative;
+  top: 0;
+  left: 30px;
+}
+
+.box h1{
+  position: absolute;
+  top: 150px;
+  left: 100px;
+}
+
+.body{
+  background-color: #FFFFCC;
 }

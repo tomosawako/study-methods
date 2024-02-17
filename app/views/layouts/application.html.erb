@@ -6,8 +6,9 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
     <script defer src="https://kit.fontawesome.com/fc3bd943f3.js" crossorigin="annoymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,7 +16,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png') %></a>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.jpg', class: "logo") %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,9 +57,6 @@
               <% else %>
               <li class="nav-item">
                 <%=link_to "Home", root_path, class: "nav-link text-dark" %>
-              </li>
-              <li class="nav-item">
-                <%=link_to "About", about_path, class: "nav-link text-dark" %>
               </li>
               <li class="nav-item">
                 <%=link_to "新規登録", new_enduser_registration_path, class: "nav-link text-dark" %>
