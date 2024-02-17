@@ -44,35 +44,10 @@
               <% end %>
             </h5>
         <% end %>
-        <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
-          <%= link_to post_path(post.id) do %>
-            <%= image_tag post.get_image(200,400) %>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title">
-              <b>科目・資格名</b>: <%= post.category.name %>
-            </h5>
-  　  　　　</div>
-  　　   　　<ul class="list-group list-group-flush">
-  　　   　    <li class="list-group-item">
-              <b>分野</b>: <%= post.field %>
-            </li>
-            <li class="list-group-item">
-              <b>参考書・アプリ</b>: <%= post.reference_book %>
-            </li>
-            <li class="list-group-item">
-              <b>勉強方法</b>: <%= post.study_method %>
-            </li>
-            <li class="list-group-item">
-             <b>総学習時間</b>: <%= post.total_study_time %>時間
-            </li>
-            <li class="list-group-item">
-             <b>成果</b>: <%= post.achievement %>
-            </li>
-          </ul>
-          <%= render 'info', post: post %>
-      </div>
       <% end %>
+        <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
+          <%= render 'list',post: post %>
+        </div>
       <% end %>
     </div>
   </div>

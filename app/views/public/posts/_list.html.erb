@@ -1,5 +1,7 @@
 <!--- 投稿内容 -->
+<!-- 投稿ステータス確認 -->
 <% if post.is_active %>
+  <!--- 投稿内容 -->
   <%= link_to post_path(post.id) do %>
   <% image_tag post.get_image(200,400) %>
   <% end %>

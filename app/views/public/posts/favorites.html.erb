@@ -11,37 +11,14 @@
       <div class="col-sm-9">
         <% @favorites_posts.each do |favorite| %>
         <div class="card border-warning w-100 mx-auto mt-4 shadow-lg p-3">
-          <%= link_to post_path(favorite.id) do %>
-          <% image_tag favorite.get_image(200,400) %>
-          <% end %>
-        <div class="card-body">
-          <h5 class="card-title">
-            <b>科目・資格名</b>: <%= favorite.category.name %>
-          </h5>
+          <%= render'list', post:favorite %>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <b>分野</b>: <%= favorite.field %>
-          </li>
-          <li class="list-group-item">
-            <b>参考書・アプリ</b>: <%= favorite.reference_book %>
-          </li>
-          <li class="list-group-item">
-            <b>勉強方法</b>: <%= favorite.study_method %>
-          </li>
-          <li class="list-group-item">
-            <b>総学習時間</b>: <%= favorite.total_study_time %>時間
-          </li>
-          <li class="list-group-item">
-            <b>成果</b>: <%= favorite.achievement %>
-          </li>
-        </ul>
-        <%= render 'info', post: favorite %>
-      </div>
-      <% end %>
+        <% end %>
       </div>
     <% else %>
-    　<h4>お気に入りした投稿はありません</h4>
+      <div class="col-sm-9">
+        <h4>お気に入りした投稿はありません</h4>
+    　</div>
     <% end %>
   </div>
 </div>
