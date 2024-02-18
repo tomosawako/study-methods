@@ -1,24 +1,22 @@
 <!--- ユーザープロフィール -->
-<div>
-  <h4 class="mt-5 mb-2">ユーザープロフィール</h4>
-  <%= image_tag @enduser.get_profile_image(100,100) %>
-  <h5><%= @enduser.name %></h5>
-  <% if @enduser == current_enduser %>
-  <p><%= @enduser.email %></p>
-  <p>
-    <%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %>
-  </p>
-  <p>
-    <%= link_to "お気に入り投稿一覧", posts_favorites_path(enduser_id: @enduser.id) %>
-  </p>
-  <% end %>
-</div>
-
-<h4 class="text-center mt-5"><%= @enduser.name %>さんの投稿一覧</h4>
+<div class="container">
+  <div class="d-flex row">
+    <div class="col-sm-3 ml-2 mr-3">
+      <h4 class="mt-5 mb-2">ユーザープロフィール</h4>
+    <%= image_tag @enduser.get_profile_image(100,100) %>
+  　<h5><%= @enduser.name %></h5>
+  　<% if @enduser == current_enduser %>
+      <p><%= @enduser.email %></p>
+      <p><%= link_to "プロフィール編集", edit_enduser_path(@enduser.id) %></p>
+      <p><%= link_to "お気に入り投稿一覧", posts_favorites_path(enduser_id: @enduser.id) %></p>
+    <% end %>
+    </div>
+    <div class="col-sm-8">
+      <h4 class="text-center mt-5"><%= @enduser.name %>さんの投稿一覧</h4>
 <!--- ユーザーの投稿一覧 -->
 <div　calss="card-list-container py-5">
   <% @posts.each do |post| %>
-      <div class="card border-warning mx-auto w-50 mt-4 shadow-lg p-3">
+      <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
         <%= render 'public/posts/list', post: post %>
         <%= render 'public/posts/inappropriate', post: post %>
       </div>
@@ -27,3 +25,8 @@
         <%= paginate @posts %>
       </div>
 </div>
+    </div>
+
+</div>
+</div>
+

@@ -5,34 +5,32 @@
   <%= link_to post_path(post.id) do %>
   <% image_tag post.get_image(200,400) %>
   <% end %>
-  <div class="card-body">
-    <h5 class="card-title">
+  <ul class="list-group list-group-flush mt-2">
+    <li class="list-group-item list-group-item-warning">
       <b>科目・資格名</b>: <%= post.category.name %>
-    </h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
+    </li>
+    <li class="list-group-item list-group-item-warning">
       <b>分野</b>: <%= post.field %>
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item list-group-item-warning">
       <b>参考書・アプリ</b>: <%= post.reference_book %>
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item list-group-item-warning">
       <b>勉強方法</b>: <%= post.study_method %>
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item list-group-item-warning">
       <b>総学習時間</b>: <%= post.total_study_time %>時間
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item list-group-item-warning">
       <b>成果</b>: <%= post.achievement %>
     </li>
   </ul>
-  <div class="card-body">
+  <div class="card-body pl-0">
     <div class="row">
       <div class="col-sm-3">
         <%= image_tag post.enduser.get_profile_image(80,80), class:"rounded-circle" %>
       </div>
-      <div class="col-sm-9">
+      <div class="col-sm-8 ml-3">
         <span>
           <%= link_to enduser_path(post.enduser.id) do %> <i class="fas fa-user"></i> By <%= post.enduser.name %> |
           <% end %>

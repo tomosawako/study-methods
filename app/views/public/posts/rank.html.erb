@@ -1,10 +1,10 @@
 <div class="container">
-  <div class-"d-flex row">
-    <div class="col-sm-3">
+  <div class="d-flex row">
+    <div class="col-sm-4">
       <!--- カテゴリ(科目・資格検索) -->
       <%= render 'search_category', categories: @categories %>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-8">
       <h3 class="text-center">"<%= @category.name %>"のお気に入り数ランキング</h3>
       <!-- 同率順位表示 -->
       <% lastFavorite = 0 %>

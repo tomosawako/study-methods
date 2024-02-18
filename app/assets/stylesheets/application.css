@@ -13,9 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ .title-text{
+  font-size: 80px;
+ }
+
 .logo{
-  width: 30%;
-  height: 30%;
+  height: 50%;
+  width: 50%;
 }
 
 .img-fluid{
@@ -32,10 +36,14 @@
 
 .box h1{
   position: absolute;
-  top: 150px;
-  left: 100px;
+  top: 100px;
+  left: 50px;
 }
 
-.body{
+.new-post,.edit-post{
   background-color: #FFFFCC;
+}
+
+div.card{
+  background-color: #FFFFE0;
 }

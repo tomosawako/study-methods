@@ -16,7 +16,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.jpg', class: "logo") %></a>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo.png', class: "logo ml-0") %></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,11 +36,9 @@
               <li class="nav-item">
                 <%=link_to "ログアウト", destroy_enduser_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
-              <div>
-                <%=form_with url: posts_path, method: :get do |f| %>
-                <%= f.text_field :"keyword", placeholder: "\uf002 キーワード検索", class: "fas" %>
-                <% end %>
-              </div>
+              <li class="nav-item">
+
+              </li>
               <% elsif admin_signed_in? %>
               <li class="nav-item">
                 <%=link_to "投稿ー覧", admin_homes_top_path, class: "nav-link text-dark" %>
@@ -66,6 +64,11 @@
               </li>
               <% end %>
             </ul>
+            <% if enduser_signed_in? %>
+              <%=form_with url: posts_path, method: :get do |f| %>
+              <%= f.text_field :"keyword", placeholder: "\uf002 キーワード検索", class: "fas align-bottom" %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </nav>
