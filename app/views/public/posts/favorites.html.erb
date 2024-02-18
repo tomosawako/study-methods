@@ -1,25 +1,21 @@
 <div class="card-list container">
-  <div class-"d-flex row">
+  <div class="d-flex row">
     <div class="col-sm-3">
       <!--- カテゴリ(科目・資格検索) -->
       <%= render 'search_category', categories: @categories %>
     </div>
-    <% if @favorites_posts.present? %>
-      <h4 class="text-center my-5">
-        <%= @enduser.name %>さんのお気に入り投稿一覧
-      </h4>
-      <div class="col-sm-9">
+    <div class="col-sm-9">
+      <% if @favorites_posts.present? %>
+        <h4 class="text-center mt-5">お気に入り投稿一覧</h4>
         <% @favorites_posts.each do |favorite| %>
         <div class="card border-warning w-100 mx-auto mt-4 shadow-lg p-3">
           <%= render'list', post:favorite %>
         </div>
         <% end %>
-      </div>
-    <% else %>
-      <div class="col-sm-9">
+      <% else %>
         <h4>お気に入りした投稿はありません</h4>
-    　</div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <%= paginate @favorites_posts %>

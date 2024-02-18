@@ -3,9 +3,7 @@
     <div class="col-sm-1"></div>
     <h3 class="text-center my-4 ml-4"><b>管理者ログイン</b></h3>
   </div>
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group row" >
     <div class="col-sm-2"></div>
     <%= f.label :email,"メールアドレス", class:"col-sm-2 control-label" %>

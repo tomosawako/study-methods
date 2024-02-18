@@ -25,18 +25,22 @@
           <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード", class:"form-control" %>
         </div>
         <%= f.submit "サインイン", class:"btn btn-block btn-info mt-5" %>
+        <%= link_to 'ゲストログイン(閲覧用)', endusers_guest_sign_in_path, method: :post, class: "btn btn-block btn-success mt-4" %>
       </div>
     </div>
   </div>
   <% end %>
   <div class="row">
-  <p class="border border-secondary bg-light" >ユーザー登録がお済みでない方</p>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <p class="border" >ユーザー登録がお済みでない方</p>
+    </div>
   </div>
   <div class="row">
-  <%= render "public/shared/links" %>から新規ユーザー登録してください。
-  </div>
-  <div class="text-center">
-    <%= link_to 'ゲストログイン(閲覧用)', endusers_guest_sign_in_path, method: :post, class: "btn btn-block btn-success mt-4" %>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <p><%= render "public/shared/links" %>から新規ユーザー登録してください。</p>
+    </div>
   </div>
 </div>
 
