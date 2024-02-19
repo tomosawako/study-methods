@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
-      <h5 class="text-center my-5 mx-5"><%= @enduser.name %>さんのユーザー情報</h5>
+    <div class="col-sm-5">
+      <h5 class="text-center my-3"><%= @enduser.name %>さんのユーザー情報</h5>
       <table class="table table-borderless">
         <tr>
           <th>ユーザーID</th>
@@ -37,12 +37,14 @@
         </tr>
       </table>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
       <!--- ユーザー個人の投稿一覧 -->
-      <h4 class="text-center my-3 mx-5"><%= @enduser.name %>さんの投稿一覧</h4>
-      <div　calss="card-list-container py-5">
-        <%= render 'admin/posts/list', posts: @posts %>
+      <h4 class="text-center my-3"><%= @enduser.name %>さんの投稿一覧</h4>
+      <% @posts.each do |post| %>
+      <div class="card border-warning w-75 mt-4 shadow-lg p-3 mx-auto">
+        <%= render 'admin/posts/list', post: post %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
