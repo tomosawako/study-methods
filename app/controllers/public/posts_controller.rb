@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_enduser!
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
     @categories = Category.all
@@ -75,4 +76,13 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:image, :category_id, :field, :reference_book, :study_method, :total_study_time, :achievement)
   end
+
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    enduser = Enduser.find(post.enduser.id)
+    unless enduser.id == current_enduser.id
+      redirect_to posts_path
+    end
+  end
+
 end

@@ -22,9 +22,10 @@
         <%= render 'list', post: post %>
       </div>
       <% end %>
-      <div class="text-center">
-        <%= paginate @posts %>
-      </div>
     </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><%= paginate @posts %></div>
   </div>
 </div>

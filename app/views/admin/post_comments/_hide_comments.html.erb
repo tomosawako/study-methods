@@ -6,7 +6,7 @@
       <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     </h6>
     <%= post_comment.comment %><br>
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+    <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
   </div>
 </div>
 <% if post_comment.replies.offset(0).any? %>
@@ -25,7 +25,7 @@
           <%= reply.created_at.strftime('%Y/%m/%d') %>
         </h6>
         <%= reply.comment %><br>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+        <%= link_to "削除", admin_post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
       </div>
     </div>
 　  <% end %>
