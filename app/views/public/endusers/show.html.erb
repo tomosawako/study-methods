@@ -17,15 +17,18 @@
       <div　calss="card-list-container py-5">
         <% @posts.each do |post| %>
         <div class="card border-warning mx-auto w-100 mt-4 shadow-lg p-3">
-          <%= render 'public/posts/list', post: post %>
-          <%= render 'public/posts/inappropriate', post: post %>
+          <!--投稿ステータス確認-->
+          <% if post.is_active %>
+            <%= render 'public/posts/list', post: post %>
+          <% else %>
+            <%= render 'public/posts/inappropriate', post: post %>
+          <% end %>
         </div>
         <% end %>
-        <div class="text-center">
-          <%= paginate @posts %>
-        </div>
+      </div>
+      <div class="text-center">
+        <%= paginate @posts %>
       </div>
     </div>
   </div>
 </div>
-

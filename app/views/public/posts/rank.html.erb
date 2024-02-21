@@ -5,14 +5,14 @@
       <%= render 'search_category', categories: @categories %>
     </div>
     <div class="col-sm-8">
-      <h3 class="text-center">"<%= @category.name %>"のお気に入り数ランキング</h3>
+      <h4 class="text-center mt-4">"<%= @category.name %>"のお気に入り数ランキング</h4>
+      <p class="text-center mb-0">新着順は<%= link_to "こちら", posts_path(category_id: @category.id) %></p>
       <!-- 同率順位表示 -->
       <% lastFavorite = 0 %>
       <% j = 1 %>
       <!--- いいね数ランキング -->
       <% @post_ranks.each.with_index(1) do |post,i| %>
-      <!-- 投稿ステータス確認 -->
-      <% if post.is_active %>
+
         <% if i == 1 %>
           <% lastFavorite = post.favorites.count %>
         <% end %>
@@ -44,10 +44,12 @@
               <% end %>
             </h5>
         <% end %>
-      <% end %>
-        <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
+        <!-- 投稿ステータス確認 -->
+      <% if post.is_active %>
+        <div class="card border-warning mx-auto w-75 mt-2 shadow-lg p-3">
           <%= render 'list',post: post %>
         </div>
+      <% end %>
       <% end %>
     </div>
   </div>

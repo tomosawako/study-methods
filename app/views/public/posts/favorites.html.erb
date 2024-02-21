@@ -8,9 +8,12 @@
       <% if @favorites_posts.present? %>
         <h4 class="text-center mt-5">お気に入り投稿一覧</h4>
         <% @favorites_posts.each do |favorite| %>
-        <div class="card border-warning w-100 mx-auto mt-4 shadow-lg p-3">
-          <%= render'list', post:favorite %>
-        </div>
+        <!--投稿ステータス確認-->
+        <% if post.is_active %>
+          <div class="card border-warning w-100 mx-auto mt-4 shadow-lg p-3">
+            <%= render'list', post:favorite %>
+          </div>
+          <% end %>
         <% end %>
       <% else %>
         <h4>お気に入りした投稿はありません</h4>

@@ -11,16 +11,19 @@
       <!--- カテゴリ検索用のタイトル -->
       <% elsif params[:category_id].present? %>
         <h4 class="text-center mt-4">"<%= @category.name %>"の投稿一覧(新着順)</h4>
-        お気に入り数ランキングは<%= link_to "こちら", posts_rank_path(category_id: @category.id) %>
+        <p class="text-center">お気に入り数ランキングは<%= link_to "こちら", posts_rank_path(category_id: @category.id) %></p>
       <% else %>
         <!--- 全ての投稿一覧用のタイトル -->
         <h4 class="text-center mt-4">全科目・資格の投稿一覧</h4>
       <% end %>
       <!--- 投稿一覧 -->
       <% @posts.each do |post| %>
-      <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
-        <%= render 'list', post: post %>
-      </div>
+      <!--投稿ステータス確認-->
+      <% if post.is_active %>
+        <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
+          <%= render 'list', post: post %>
+        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
