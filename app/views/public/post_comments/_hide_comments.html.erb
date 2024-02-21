@@ -3,7 +3,9 @@
   <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
   <div class="media-body ml-2">
     <h6 class="mb-1">
+      <%= link_to enduser_path(post_comment.enduser) do %>
       <%= post_comment.enduser.name %>
+      <% end %>
       <%= post_comment.created_at.strftime('%Y/%m/%d') %>
     </h6>
     <%= post_comment.comment %><br>
@@ -38,7 +40,9 @@
     <p><%= image_tag post_comment.enduser.get_profile_image(80,80) %></p>
     <div class="media-body ml-2">
       <h6 class="mb-1">
+        <%= link_to enduser_path(reply.enduser) do %>
         <%= reply.enduser.name %>
+        <% end %>
         <%= reply.created_at.strftime('%Y/%m/%d') %>
       </h6>
       <%= reply.comment %><br>
