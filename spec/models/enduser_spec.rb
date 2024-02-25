@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Enduserモデルのテスト', type: :model do
+  describe 'ユーザー登録' do
+    it '有効な登録の場合登録できる' do
+      enduser = build(:enduser)
+      expect(enduser).to be_valid
+    end
+  end
+
   describe 'バリデーションのテスト' do
     subject { enduser.valid? }
 

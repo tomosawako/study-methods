@@ -28,6 +28,14 @@ describe 'Postモデルのテスト', type: :model do
         post.study_method = ''
         is_expected.to eq false
       end
+      it '200文字以下であること: 200文字は〇' do
+        post.study_method = Faker::Lorem.characters(number: 200)
+        is_expected.to eq true
+      end
+      it '200文字以下であること: 201文字はx' do
+        post.study_method = Faker::Lorem.characters(number: 201)
+        is_expected.to eq false
+      end
     end
 
     context 'total_study_time' do
@@ -42,9 +50,29 @@ describe 'Postモデルのテスト', type: :model do
         post.achievement = ''
         is_expected.to eq false
       end
+      it '200文字以下であること: 200文字は〇' do
+        post.achievement = Faker::Lorem.characters(number: 200)
+        is_expected.to eq true
+      end
+      it '200文字以下であること: 201文字はx' do
+        post.achievement = Faker::Lorem.characters(number: 201)
+        is_expected.to eq false
+      end
     end
   end
 
+  describe 'アソシエーションのテスト' do
+    context 'Enduserモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Post.reflect_on_association(:enduser).macro).to eq :belongs_to
+      end
+    end
+    context 'Categoryモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Post.reflect_on_association(:category).macro).to eq :belongs_to
+      end
+    end
+  end
 end
 
 

@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   validates :category_id, presence: true
   validates :field, presence: true
   validates :reference_book, presence: true
-  validates :study_method, presence: true
+  validates :study_method, presence: true, length: {maximum: 200}
   validates :total_study_time, presence: true
-  validates :achievement, presence: true
+  validates :achievement, presence: true, length: {maximum: 200}
 
   def get_image(width, height)
     unless image.attached?
