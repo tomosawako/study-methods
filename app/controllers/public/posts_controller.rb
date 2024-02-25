@@ -68,7 +68,7 @@ class Public::PostsController < ApplicationController
     @categories = Category.all
     @category_id = params[:category_id]
     @category = Category.find(params[:category_id])
-    @post_ranks = Post.joins(:favorites).where(category_id: @category_id).group(:post_id).order('COUNT(post_id) DESC').page(params[:page])
+    @post_ranks = Post.rank_posts(@category_id).page(params[:page])
   end
 
   private

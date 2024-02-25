@@ -10,7 +10,7 @@ class Enduser < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, presence: true
+  validates :name, uniqueness: true, length: { in: 2..20}
   validates :email, presence: true
 
   #ゲストログインするためのメソッド

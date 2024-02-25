@@ -24,6 +24,10 @@ class Post < ApplicationRecord
     favorites.exists?(enduser_id: enduser.id)
   end
 
+  def self.rank_posts(category_id)
+    self.joins(:favorites).where(category_id: category_id).group(:post_id).order('COUNT(post_id) DESC')
+  end
+
 end
 
 
