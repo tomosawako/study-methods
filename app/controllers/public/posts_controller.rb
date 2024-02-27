@@ -37,6 +37,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.enduser_id = current_enduser.id
     if @post.save
+      flash[:notice] = "You have created post successfully."
       redirect_to post_path(@post.id)
     else
       render :new
@@ -46,6 +47,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:notice] = "You have updated successfully."
       redirect_to post_path(@post.id)
     else
       render :edit

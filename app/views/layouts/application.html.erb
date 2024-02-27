@@ -77,10 +77,14 @@
       <div class="container">
         <!-- エラーメッセージ -->
         <% if notice.present? %>
-        <p id="notice"><%= notice %></p>
+          <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+          <% end %>
         <% end %>
         <% if alert.present? %>
-        <p id="alert"><%= alert %></p>
+          <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+          <% end %>
         <% end %>
       </div>
       <%= yield %>
