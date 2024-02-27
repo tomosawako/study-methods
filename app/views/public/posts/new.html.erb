@@ -23,7 +23,7 @@
        </div>
        <div class="row my-1">
          <%= f.label :study_method, "勉強方法", class:"control-label my-1" %>
-         <%= f.text_area :study_method,class:"form-control" %>
+         <%= f.text_area :study_method,class:"form-control", value: "", placeholder: "200字以内" %>
        </div>
        <div class="row my-1">
          <%= f.label :total_study_time, "総学習時間", class:"control-label my-1" %>
@@ -34,7 +34,7 @@
        </div>
        <div class="row my-1">
          <%= f.label :achienvement, "成果", class:"control-label my-1" %>
-         <%= f.text_area :achievement,class:"form-control"%>
+         <%= f.text_area :achievement,class:"form-control", value: "", placeholder: "200字以内" %>
        </div>
        <div class="row my-4">
           <%= f.file_field :image, accept: "image/*" %>
