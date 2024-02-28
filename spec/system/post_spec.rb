@@ -61,7 +61,7 @@ describe '投稿のテスト' do
     context 'リンク先の確認' do
       it '編集の遷移先は編集か' do
         edit_link = find('a')[9]
-        edit_link.click
+        click_link edit_link, match: :first
         expect(current_path).to eq('/posts/' + post.id.to_s + '/edit')
       end
     end
