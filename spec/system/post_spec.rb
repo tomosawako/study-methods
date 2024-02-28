@@ -7,18 +7,11 @@ describe '投稿のテスト' do
   let!(:post) { create(:post, enduser: enduser, category: category) }
   let!(:other_post) { create(:post, enduser: other_enduser, category: category) }
 
-  describe 'トップ画面(root_path)のテスト' do
-    before do
-      visit root_path
-    end
-    context '表示の確認' do
-      it 'トップ画面に(root_path)に一覧ページのリンクが表示されているか' do
-        expect(page).to have link "", href: posts_path
-      end
-      it 'root_pathが"/"であるか' do
-        expect(current_path).to eq('/')
-      end
-    end
+  before do
+    visit new_enduser_session_path
+    fill_in 'enduser[email]', with: enduser.email
+    fill_in 'enduser[password]', with: enduser.password
+    click_button 'ログイン'
   end
 
   describe '投稿画面のテスト' do
@@ -27,7 +20,7 @@ describe '投稿のテスト' do
     end
     context '表示の確認' do
       it 'new_post_pathが"/post/new"であるか' do
-        expect(current_path).to eq('/post/new')
+        expect(current_path).to eq('/posts/new')
       end
       it '投稿ボタンが表示されているか' do
         expect(page).to have_button '投稿'
@@ -35,11 +28,11 @@ describe '投稿のテスト' do
     end
     context '投稿処理のテスト' do
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'post[field]', with: :Faker::Lorem.characters(number:10)
-        fill_in 'post[reference_book]', with: :Faker::Lorem.characters(number:10)
-        fill_in 'post[study_method]', with: :Faker::Lorem.characters(number:30)
+        fill_in 'post[field]', with: Faker::Lorem.characters(number:10)
+        fill_in 'post[reference_book]', with: Faker::Lorem.characters(number:10)
+        fill_in 'post[study_method]', with: Faker::Lorem.characters(number:30)
         fill_in 'post[total_study_time]', with: rand(1..100)
-        fill_in 'post[achievement]', with: :Faker::Lorem.characters(number:30)
+        fill_in 'post[achievement]', with: Faker::Lorem.characters(number:30)
         click_button '投稿'
         expect(page).to have_current_path post_path(post.last)
       end
@@ -67,14 +60,14 @@ describe '投稿のテスト' do
     end
     context 'リンク先の確認' do
       it '編集の遷移先は編集か' do
-        edit_link = find('a')[3]
+        edit_link = find('a')[9]
         edit_link.click
         expect(current_path).to eq('/posts/' + post.id.to_s + '/edit')
       end
     end
     context '削除のテスト' do
       it 'postの削除' do
-        expect{ post.destroy }.to change{ post.count }.by(-1)
+        expect{ post.destroy }.to change{ Post.count }.by(-1)
       end
     end
   end

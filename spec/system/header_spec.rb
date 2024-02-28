@@ -46,7 +46,7 @@ describe 'ヘッダーのテスト' do
       end
       it 'ログインを押すと、トップ画面に遷移する' do
         login_link = find_all('a')[2].text
-        login_link = signup_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        login_link = login_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link login_link, match: :first
         is_expected.to eq '/endusers/sign_in'
       end
@@ -56,7 +56,7 @@ describe 'ヘッダーのテスト' do
   describe 'ログイン後のヘッダーのテスト' do
     before do
       visit new_enduser_session_path
-      fill_in 'enduser[name]', with: enduser.name
+      fill_in 'enduser[email]', with: enduser.email
       fill_in 'enduser[password]', with: enduser.password
       click_button 'ログイン'
     end
@@ -101,7 +101,7 @@ describe 'ヘッダーのテスト' do
         logout_link = find_all('a')[4].text
         logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link logout_link
-        expect(current_path).to eq ''
+        expect(current_path).to eq '/'
       end
     end
   end
