@@ -58,16 +58,99 @@ describe '投稿のテスト' do
         expect(page).to have_link '編集'
       end
     end
-    context 'リンク先の確認' do
-      it '編集の遷移先は編集か' do
-        edit_link = find('a')[9]
-        click_link edit_link, match: :first
-        expect(current_path).to eq('/posts/' + post.id.to_s + '/edit')
+  end
+
+  describe '投稿詳細画面のテスト' do
+    before do
+      visit post_path(post)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/' + post.id.to_s
+      end
+      it 'ユーザー画像・名前のリンク先が正しい' do
+        expect(page).to have_link post.enduser.name, href: enduser_path(post.enduser)
+      end
+      it '投稿したユーザー名が表示される' do
+        expect(page).to have_content post.enduser.name
+      end
+      it '投稿の科目・資格名が表示される' do
+        expect(page).to have_content post.category.name
+      end
+      it '投稿の分野が表示される' do
+        expect(page).to have_content post.field
+      end
+      it '投稿の参考書・アプリが表示される' do
+        expect(page).to have_content post.reference_book
+      end
+      it '投稿の勉強方法が表示される' do
+        expect(page).to have_content post.study_method
+      end
+      it '投稿の勉強時間が表示される' do
+        expect(page).to have_content post.total_study_time
+      end
+      it '投稿の成果が表示される' do
+        expect(page).to have_content post.achievement
+      end
+      it '投稿の編集リンクが表示される' do
+        expect(page).to have_link '編集', href: edit_post_path(post)
+      end
+      it '投稿の削除リンクが表示される' do
+        expect(page).to have_link '削除', href: post_path(post)
       end
     end
-    context '削除のテスト' do
-      it 'postの削除' do
-        expect{ post.destroy }.to change{ Post.count }.by(-1)
+
+    context '編集リンクのテスト' do
+      it '編集画面に遷移する' do
+        second_enduser_post = FactoryBot.create(:post, enduser: enduser)
+        visit post_path(second_enduser_post)
+        click_link '編集'
+        expect(current_path).to eq edit_post_path(second_enduser_post)
+      end
+    end
+
+    context '削除リンクのテスト' do
+      before do
+        click_link '削除'
+      end
+      it '正しく削除される' do
+        expect(Post.where(id: post.id).count).to eq 0
+      end
+      it 'リダイレクト先が、投稿一覧画面になっている' do
+        expect(current_path).to eq '/posts'
+      end
+    end
+  end
+
+  describe '投稿編集画面のテスト' do
+    before do
+      visit edit_post_path(post)
+    end
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
+      end
+      it 'category.name編集フォームが表示される' do
+        expect(page).to have_field 'post.category[name]', with: post.field
+      end
+      it 'field編集フォームが表示される' do
+        expect(page).to have_field 'post[field]', with: post.field
+      end
+      it 'reference_book編集フォームが表示される' do
+        expect(page).to have_field 'post[reference_book]', with: post.reference_book
+      end
+      it 'study_method編集フォームが表示される' do
+        expect(page).to have_field 'post[study_method]', with: post.study_method
+      end
+      it 'total_study_time編集フォームが表示される' do
+        expect(page).to have_field 'post[total_study_time]', with: post.total_study_time
+      end
+      it 'achievement編集フォームが表示される' do
+        expect(page).to have_field 'post[achievement]', with: post.achievement
+      end
+      it '変更を保存ボタンが表示される' do
+        expect(page).to have_button '変更を保存'
       end
     end
   end
