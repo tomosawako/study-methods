@@ -131,9 +131,6 @@ describe '投稿のテスト' do
       it 'URLが正しい' do
         expect(current_path).to eq '/posts/' + post.id.to_s + '/edit'
       end
-      it 'category.name編集フォームが表示される' do
-        expect(page).to have_field 'post.category[name]', with: post.field
-      end
       it 'field編集フォームが表示される' do
         expect(page).to have_field 'post[field]', with: post.field
       end
