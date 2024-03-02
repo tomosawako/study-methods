@@ -1,6 +1,6 @@
 <div class="card border-warning w-50 mx-auto mt-4 shadow-lg p-3">
   <!--投稿内容-->
-  <%= render 'list', post: @post %>
+  <%= render 'list', post: @post, index: false %>
   <hr>
   <div class="card-text">
     <%= form_with model: [@post, @post_comment] do |f| %>

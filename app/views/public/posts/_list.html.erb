@@ -1,8 +1,21 @@
 <!--- 投稿内容 -->
-  <!--- 投稿内容 -->
+<% if index.present? %>
+<!--- 投稿一覧、ランク順、マイページ、お気に入り画面の場合 -->
   <%= link_to post_path(post.id) do %>
-  <% image_tag post.get_image(200,400) %>
+    <% if post.image.attached? %>
+      <%= image_tag post.get_image.variant(resize_to_limit: [200, 400]).processed %>
+    <% else %>
+      <%= image_tag post.get_image, size:"200x200" %>
+    <% end %>
   <% end %>
+<% else %>
+<!--- 投稿詳細画面の場合 -->
+  <% if post.image.attached? %>
+    <%= image_tag post.get_image.variant(resize_to_limit: [200, 400]).processed %>
+  <% else %>
+    <%= image_tag post.get_image, size:"300x300" %>
+  <% end %>
+<% end %>
   <ul class="list-group list-group-flush mt-2">
     <li class="list-group-item list-group-item-warning">
       <b>科目・資格名</b>: <%= post.category.name %>
@@ -35,9 +48,15 @@
         </span>
         <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
         <span>
-          <%= link_to post_path(post.id) do %>
-          <i class="fa-regular fa-comment-dots"></i>
-          <%= post.post_comments.count %> |
+          <% if index.present? %>
+          <!--- 投稿一覧、ランク順、マイページ、お気に入り画面の場合 -->
+            <%= link_to post_path(post.id) do %>
+              <i class="fa-regular fa-comment-dots"></i>
+              <%= post.post_comments.count %> |
+            <% end %>
+          <% else %>
+            <i class="fa-regular fa-comment-dots"></i>
+            <%= post.post_comments.count %> |
           <% end %>
         </span>
         <span>
@@ -46,6 +65,7 @@
             <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
           <% end %>
           <% else %>
+          <!--- 投稿詳細画面の場合 -->
             <%= link_to post_favorite_path(post), method: :post do %>
             <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
             <% end %>

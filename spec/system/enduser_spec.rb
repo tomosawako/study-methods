@@ -57,4 +57,49 @@ describe 'ユーザログイン後のテスト' do
       end
     end
   end
+
+  describe '自分のユーザー情報編集画面のテスト' do
+    before do
+      visit edit_enduser_path(enduser)
+    end
+
+    context '表示の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/endusers/' + enduser.id.to_s + '/edit'
+      end
+      it '名前編集フォームが表示される' do
+        expect(page).to have_field 'enduser[name]', with: enduser.name
+      end
+      it '画像編集フォームが表示される' do
+        expect(page).to have_field 'enduser[profile_image]'
+      end
+      it 'email編集フォームが表示される' do
+        expect(page).to have_field 'enduser[email]', with: enduser.email
+      end
+      it '変更を保存ボタンが表示される' do
+        expect(page).to have_button '変更を保存'
+      end
+    end
+
+    context '更新成功のテスト' do
+      before do
+        @enduser_old_name = enduser.name
+        @enduser_old_email = enduser.email
+        fill_in 'enduser[name]', with: Faker::Lorem.characters(number: 9)
+        fill_in 'enduser[email]', with: Faker::Internet.email
+        expect(enduser.profile_image).to be_attached
+        click_button '変更を保存'
+      end
+
+      it '名前が正しく表示される' do
+        expect(page).not_to eq @enduser_old_name
+      end
+      it 'emailが正しく表示される' do
+        expect(page).not_to eq @enduser_old_email
+      end
+      it 'リダイレクト先が、自分のユーザー詳細' do
+        expect(current_path).to eq '/endusers/' + enduser.id.to_s
+      end
+    end
+  end
 end

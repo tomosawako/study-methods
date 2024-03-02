@@ -34,22 +34,29 @@ describe '投稿のテスト' do
         fill_in 'post[total_study_time]', with: rand(1..100)
         fill_in 'post[achievement]', with: Faker::Lorem.characters(number:30)
         click_button '投稿'
-        expect(page).to have_current_path post_path(post.last)
+        expect(current_path).to eq '/posts/' + Post.last.id.to_s
       end
     end
   end
 
-  describe '投稿一覧のテスト' do
+  describe '投稿一覧画面のテスト' do
     before do
       visit posts_path
     end
-    context '表示の確認' do
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/posts'
+      end
       it '投稿されたものが表示されているか' do
         expect(page).to have_content post.field
         expect(page).to have_content post.reference_book
         expect(page).to have_content post.study_method
         expect(page).to have_content post.total_study_time
         expect(page).to have_content post.achievement
+      end
+      it '自分と他人の画像のリンクが正しい' do
+        expect(page).to have_link '', href: enduser_path(post.enduser)
+        expect(page).to have_link '', href: enduser_path(other_post.enduser)
       end
       it '削除リンクが表示されているか' do
         expect(page).to have_link '削除'
