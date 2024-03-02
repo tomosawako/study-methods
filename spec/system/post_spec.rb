@@ -27,12 +27,17 @@ describe '投稿のテスト' do
       end
     end
     context '投稿処理のテスト' do
-      it '投稿後のリダイレクト先は正しいか' do
+      before do
         fill_in 'post[field]', with: Faker::Lorem.characters(number:10)
         fill_in 'post[reference_book]', with: Faker::Lorem.characters(number:10)
         fill_in 'post[study_method]', with: Faker::Lorem.characters(number:30)
-        fill_in 'post[total_study_time]', with: rand(1..100)
+        fill_in 'post[total_study_time]', with: rand(1..10)
         fill_in 'post[achievement]', with: Faker::Lorem.characters(number:30)
+      end
+      it '自分の新しい投稿が正しく保存される' do
+        expect { click_button '投稿' }.to change(enduser.posts, :count).by(1)
+      end
+      it '投稿後のリダイレクト先は正しいか' do
         click_button '投稿'
         expect(current_path).to eq '/posts/' + Post.last.id.to_s
       end
@@ -63,6 +68,26 @@ describe '投稿のテスト' do
       end
       it '編集リンクが表示されているか' do
         expect(page).to have_link '編集'
+      end
+    end
+    context '編集リンクのテスト' do
+      it '編集画面に遷移する' do
+        second_enduser_post = FactoryBot.create(:post, enduser: enduser)
+        visit post_path(second_enduser_post)
+        click_link '編集'
+        expect(current_path).to eq edit_post_path(second_enduser_post)
+      end
+    end
+
+    context '削除リンクのテスト' do
+      before do
+        click_link '削除'
+      end
+      it '正しく削除される' do
+        expect(Post.where(id: post.id).count).to eq 0
+      end
+      it 'リダイレクト先が、投稿一覧画面になっている' do
+        expect(current_path).to eq '/posts'
       end
     end
   end
@@ -155,6 +180,40 @@ describe '投稿のテスト' do
       end
       it '変更を保存ボタンが表示される' do
         expect(page).to have_button '変更を保存'
+      end
+    end
+    context '編集成功のテスト' do
+      before do
+        @post_old_field = post.field
+        @post_old_reference_book = post.reference_book
+        @post_old_study_method = post.study_method
+        @post_old_total_study_time = post.total_study_time
+        @post_old_achievement = post.achievement
+        fill_in 'post[field]', with: Faker::Lorem.characters(number:9)
+        fill_in 'post[reference_book]', with: Faker::Lorem.characters(number:9)
+        fill_in 'post[study_method]', with: Faker::Lorem.characters(number:29)
+        fill_in 'post[total_study_time]', with: rand(11..20)
+        fill_in 'post[achievement]', with: Faker::Lorem.characters(number:29)
+        click_button '変更を保存'
+      end
+
+      it 'fieldが正しく変更される' do
+        expect(post.reload.field).not_to eq @post_old_field
+      end
+      it 'reference_bookが正しく変更される' do
+        expect(post.reload.reference_book).not_to eq @post_old_reference_book
+      end
+      it 'が正しく変更される' do
+        expect(post.reload.study_method).not_to eq @post_old_study_method
+      end
+      it 'が正しく変更される' do
+        expect(post.reload.total_study_time).not_to eq @post_old_total_study_time
+      end
+      it 'が正しく変更される' do
+        expect(post.reload.achievement).not_to eq @post_old_achievement
+      end
+      it 'リダイレクト先が、更新した投稿の詳細画面になっている' do
+        expect(current_path).to eq '/posts/' + post.id.to_s
       end
     end
   end
