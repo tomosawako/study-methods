@@ -21,9 +21,9 @@
 https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjgKCk/edit?usp=sharing
 
 ## 設計書
-- ワイヤーフレーム
 - 画面遷移図(https://drive.google.com/file/d/1IrdZwuh55mgqtuHscD8YUKUuDJB49wLD/view?usp=sharing)
-エンドユーザー(https://drive.google.com/file/d/1OKiMWplND_ZkvwRhAuNLg9ZNS2N3vDKP/view?usp=sharing)
+- ワイヤーフレーム<br>
+エンドユーザー(https://drive.google.com/file/d/1OKiMWplND_ZkvwRhAuNLg9ZNS2N3vDKP/view?usp=sharing)<br>
 管理者(https://drive.google.com/file/d/1M7s6RHHePjJBf45sTugOMorqA-3LLjr9/view?usp=sharing)
 - ER図(https://drive.google.com/file/d/11W6yzH-U6qG6dTQf1JBbDplZ8ptz48AZ/view?usp=sharing)
 - テーブル定義書(https://docs.google.com/spreadsheets/d/148t5LRsqVWieLjbq1l_vBYQghlfzmhRAVXW-KPdXEbY/edit?usp=sharing)
