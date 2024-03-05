@@ -17,9 +17,18 @@
 - 苦手な科目がありなかなか得点が上がらず困っている時
 - 取りたい資格があり、効率的な勉強方法を知りたい人
 ​
+## 実装機能リスト
+https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjgKCk/edit?usp=sharing
+
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
-​
+- ワイヤーフレーム
+- 画面遷移図(https://drive.google.com/file/d/1IrdZwuh55mgqtuHscD8YUKUuDJB49wLD/view?usp=sharing)
+エンドユーザー(https://drive.google.com/file/d/1OKiMWplND_ZkvwRhAuNLg9ZNS2N3vDKP/view?usp=sharing)
+管理者(https://drive.google.com/file/d/1M7s6RHHePjJBf45sTugOMorqA-3LLjr9/view?usp=sharing)
+- ER図(https://drive.google.com/file/d/11W6yzH-U6qG6dTQf1JBbDplZ8ptz48AZ/view?usp=sharing)
+- テーブル定義書(https://docs.google.com/spreadsheets/d/148t5LRsqVWieLjbq1l_vBYQghlfzmhRAVXW-KPdXEbY/edit?usp=sharing)
+- 詳細設計(https://docs.google.com/spreadsheets/d/1rj2ai3D-Y0jV-Wq96S3AAM--1T3p03kndCOm8xZOeJM/edit?usp=sharing)
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -31,6 +40,5 @@
 フリーイラスト素材として以下を使用
 - ぱくたそ (https://www.pakutaso.com/)
 - O-DAN(https://o-dan.net/ja/)
-
-## 実装機能リスト
-https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjgKCk/edit?usp=sharing
+ロゴ作成素材として以下を使用
+- https://www.designevo.com/
