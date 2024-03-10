@@ -44,6 +44,7 @@ class Public::SessionsController < Devise::SessionsController
     return unless enduser.valid_password?(params[:enduser][:password])
     return if enduser.is_active == true
     if enduser.is_active == false
+      flash[:alert] = "このアカウントは利用停止されました。"
       redirect_to new_enduser_registration_path
     end
   end
