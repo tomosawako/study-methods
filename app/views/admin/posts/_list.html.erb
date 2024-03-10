@@ -1,6 +1,20 @@
 <!--- 内容 -->
-<%= link_to admin_post_path(post) do %>
-  <% image_tag post.get_image(200,400) %>
+<% if index.present? %>
+<!--- 投稿一覧、ランク順、マイページ、お気に入り画面の場合 -->
+  <%= link_to admin_post_path(post.id) do %>
+    <% if post.image.attached? %>
+      <%= image_tag post.get_image.variant(resize_to_limit: [200, 400]).processed %>
+    <% else %>
+      <%= image_tag post.get_image, size:"200x200" %>
+    <% end %>
+  <% end %>
+<% else %>
+<!--- 投稿詳細画面の場合 -->
+  <% if post.image.attached? %>
+    <%= image_tag post.get_image.variant(resize_to_limit: [200, 400]).processed %>
+  <% else %>
+    <%= image_tag post.get_image, size:"300x300" %>
+  <% end %>
 <% end %>
 <div class="card-body">
   <h5 class="card-title">
@@ -42,18 +56,23 @@
       <span><i class="fas fa-user"></i> By <%= post.enduser.name %> | </span>
       <% end %>
       <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
-      <span>
-        <%= link_to admin_post_path(post.id) do %>
+      <% if index.present? %>
+        <!--- 投稿一覧、ユーザー詳細の場合 -->
+        <span>
+          <%= link_to admin_post_path(post.id) do %>
+          <i class="fa-regular fa-comment-dots"></i>
+          <%= post.post_comments.count %> |
+          <% end %>
+        </span>
+      <% else %>
         <i class="fa-regular fa-comment-dots"></i>
-        <%= post.post_comments.count %> |
-        <% end %>
-      </span>
+          <%= post.post_comments.count %> |
+      <% end %>
       <span>
         <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
       </span>
     </div>
   </div>
-  <P class="mt-2"><%= link_to "#{post.post_comments.count}件コメント", admin_post_path(post.id) %></P>
 </div>
 
 
