@@ -30,10 +30,10 @@ https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjg
 - 詳細設計(https://docs.google.com/spreadsheets/d/1rj2ai3D-Y0jV-Wq96S3AAM--1T3p03kndCOm8xZOeJM/edit?usp=sharing)
 
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
+- OS：Amazon Linux 2
+- 言語：HTML/CSS,JavaScript,Ruby,SQL
+- フレームワーク/ライブラリ：Ruby on Rails,Bootstrap,Rspec
+- インフラ：AWS(EC2/EIP/AMI/RDS/Route53/ACM/),Ngninx,puma
 - IDE：Cloud9
 ​
 ## 使用素材
@@ -41,4 +41,4 @@ https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjg
 - ぱくたそ (https://www.pakutaso.com/)
 - O-DAN(https://o-dan.net/ja/)
 ロゴ作成素材として以下を使用
-- https://www.designevo.com/
+- designevo(https://www.designevo.com/)
