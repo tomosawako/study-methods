@@ -1,4 +1,4 @@
-<div class="container"></div>
+<%= javascript_pack_tag 'validates' %>
 <div class="container">
   <div class="row no-gutters">
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
@@ -9,7 +9,7 @@
         </div>
         <%= form_with model: @enduser, url: enduser_registration_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
-        <div class="input-group mb-3">
+        <div class="input-group was-validated mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">
               <i class="fa-solid fa-user"></i>

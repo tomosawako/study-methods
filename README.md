@@ -33,7 +33,7 @@ https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjg
 - OS：Amazon Linux 2
 - 言語：HTML/CSS,JavaScript,Ruby,SQL
 - フレームワーク/ライブラリ：Ruby on Rails,Bootstrap,Rspec
-- インフラ：AWS(EC2/EIP/AMI/RDS/Route53/ACM/),Ngninx,puma
+- インフラ：AWS(EC2/EIP/AMI/RDS/Route53/),Ngninx,puma
 - IDE：Cloud9
 ​
 ## 使用素材
