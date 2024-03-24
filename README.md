@@ -1,4 +1,6 @@
 # Study mehods
+URL:https://study-methods.com/
+<img width="1114" alt="スクリーンショット 2024-03-24 15 33 12" src="https://github.com/tomosawako/study-methods/assets/145893964/b07c26ca-fdf5-4a4a-b137-588d9610c97f" width="100">
 ​
 ## サイト概要
 ### サイトテーマ
