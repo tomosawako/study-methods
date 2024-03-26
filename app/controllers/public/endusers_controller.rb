@@ -1,14 +1,14 @@
 class Public::EndusersController < ApplicationController
   before_action :authenticate_enduser!
-  before_action :ensure_normal_enduser, only: :update
+  #before_action :ensure_normal_enduser, only: :update
   before_action :is_matching_login_user, only: [:edit, :update]
 
-  def ensure_normal_enduser
-    enduser = Enduser.find(params[:id])
-    if enduser.email == 'guest@example.com'
-      redirect_to enduser_path(enduser.id), alert: 'ゲストユーザーの更新はできません。'
-    end
-  end
+  #def ensure_normal_enduser
+  #  enduser = Enduser.find(params[:id])
+  #  if enduser.email == 'guest@example.com'
+  #    redirect_to enduser_path(enduser.id), alert: 'ゲストユーザーの更新はできません。'
+  #  end
+  #end
 
   def show
     @enduser = Enduser.find(params[:id])
