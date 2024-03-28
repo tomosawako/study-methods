@@ -7,8 +7,13 @@ class Public::PostCommentsController < ApplicationController
     comment.enduser_id = current_enduser.id
     comment.post_id = post.id
     comment_reply = post.post_comments.new
-    comment.save
-    redirect_to post_path(post)
+    if comment.save
+      flash[:notice] = "You have created comment successfully."
+      redirect_to post_path(post)
+    else
+      flash[:alert] = "You have failed to create comment."
+      redirect_to post_path(post)
+    end
   end
 
   def destroy
@@ -16,6 +21,7 @@ class Public::PostCommentsController < ApplicationController
     comment_reply = post.post_comments.new
     comment = PostComment.find(params[:id])
     comment.destroy
+    flash[:notice] = "You have deleted comment successfully."
     redirect_to post_path(comment.post_id)
   end
 

@@ -22,7 +22,6 @@ class Admin::CategoriesController < ApplicationController
      redirect_to admin_categories_path
    end
 
-
     private
 
     def category_params

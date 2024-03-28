@@ -57,6 +57,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:notice] = "You have deleted post successfully."
     redirect_to posts_path
   end
 
@@ -86,5 +87,4 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     end
   end
-
 end

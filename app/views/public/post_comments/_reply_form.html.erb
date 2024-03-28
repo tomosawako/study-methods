@@ -1,7 +1,7 @@
 <div class="card-text my-1">
   <%= form_with model: [post, comment_reply] do |f| %>
   <div class="form-group">
-    <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう" %>
+    <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントに返信してみよう(200字以内)" %>
     <%= f.hidden_field :parent_id, value: post_comment.id %>
   </div>
   <div class="text-right">
