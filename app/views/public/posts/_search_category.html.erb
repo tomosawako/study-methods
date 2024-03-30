@@ -4,12 +4,12 @@
     <th>科目・資格検索</th>
   </tr>
   <% categories.each do |category| %>
-  <tr>
-    <td>
-      <%= link_to posts_path(category_id: category.id) do  %>
-      <%= category.name %>
-      <% end %>
-    </td>
-  </tr>
+    <tr>
+      <td>
+        <%= link_to posts_path(category_id: category.id) do  %>
+          <%= category.name %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>

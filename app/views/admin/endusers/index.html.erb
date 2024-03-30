@@ -14,25 +14,25 @@
           </tr>
       </thead>
       <% @endusers.each do |enduser| %>
-  <tr>
-    <td>
-      <%= link_to admin_enduser_path(enduser.id) do %>
-      <%= enduser.id %>
+        <tr>
+          <td>
+            <%= link_to admin_enduser_path(enduser.id) do %>
+            <%= enduser.id %>
+            <% end %>
+          </td>
+          <td><%= image_tag enduser.get_profile_image(50,50) %></td>
+          <td><%= enduser.name %></td>
+          <td><%= enduser.email %></td>
+          <td>
+            <% if enduser.is_active %>
+              <p class="text-success"><b>有効</b></p>
+            <% else %>
+              <p class="text-secondary"><b>利用停止</b></p>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </td>
-    <td><%= image_tag enduser.get_profile_image(50,50) %></td>
-    <td><%= enduser.name %></td>
-    <td><%= enduser.email %></td>
-    <td>
-      <% if enduser.is_active %>
-        <p class="text-success"><b>有効</b></p>
-      <% else %>
-        <p class="text-secondary"><b>利用停止</b></p>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+      </table>
     </div>
   </div>
 </div>

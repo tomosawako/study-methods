@@ -1,6 +1,6 @@
 <!--- 投稿内容 -->
 <% if index.present? %>
-<!--- 投稿一覧、ランク順、マイページ、お気に入り画面の場合 -->
+  <!--- 投稿一覧、ランク順、マイページ、お気に入り画面の場合 -->
   <%= link_to post_path(post.id) do %>
     <% if post.image.attached? %>
       <%= image_tag post.get_image.variant(resize_to_limit: [200, 400]).processed %>
@@ -62,19 +62,19 @@
         <span>
           <% if post.favorited_by?(current_enduser) %>
             <%= link_to post_favorite_path(post), method: :delete do %>
-            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
-          <% end %>
+              <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+            <% end %>
           <% else %>
-          <!--- 投稿詳細画面の場合 -->
+            <!--- 投稿詳細画面の場合 -->
             <%= link_to post_favorite_path(post), method: :post do %>
-            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+              <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
             <% end %>
           <% end %>
         </span>
         <% if post.enduser == current_enduser %>
-        <br>
-        <span><%= link_to "編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></span>
-        <span class="ml-1"><%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+          <br>
+          <span><%= link_to "編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></span>
+          <span class="ml-1"><%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
         <% end %>
       </div>
     </div>

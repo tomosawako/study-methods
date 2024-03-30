@@ -1,44 +1,44 @@
 <h3 class="text-center my-5"><%= @enduser.name %>さんのユーザー情報編集</h3>
-<%= form_with model: @enduser, url: admin_enduser_path, method: :patch do |f| %>
 <div class="container">
-  <div class="row my-3">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-3">
-      <p>ユーザーID</p>
+  <%= form_with model: @enduser, url: admin_enduser_path, method: :patch do |f| %>
+    <div class="row my-3">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3">
+        <p>ユーザーID</p>
+      </div>
+      <div class="col-sm-4">
+        <%= @enduser.id %>
+      </div>
     </div>
-    <div class="col-sm-4">
-      <%= @enduser.id %>
+    <div class="row my-3">
+      <div class="col-sm-1"></div>
+      <%= f.label :name, "ユーザー名",for: :enduserName, class:"col-sm-3" %>
+      <div class="col-sm-4">
+        <%= f.text_field :name,id: :enduserName, class:"form-control"  %>
+      </div>
     </div>
-  </div>
-  <div class="row my-3">
-    <div class="col-sm-1"></div>
-    <%= f.label :name, "ユーザー名",for: :enduserName, class:"col-sm-3" %>
-    <div class="col-sm-4">
-      <%= f.text_field :name,id: :enduserName, class:"form-control"  %>
+    <div class="row my-3">
+      <div class="col-sm-1"></div>
+      <%= f.label :eamil, "メールアドレス",for: :inputEmail, class:"col-sm-3" %>
+      <div class="col-sm-7">
+        <%= f.email_field :email,id: :inputEmail, class:"form-control" %>
+      </div>
     </div>
-  </div>
-  <div class="row my-3">
-    <div class="col-sm-1"></div>
-    <%= f.label :eamil, "メールアドレス",for: :inputEmail, class:"col-sm-3" %>
-    <div class="col-sm-7">
-      <%= f.email_field :email,id: :inputEmail, class:"form-control" %>
+    <div class="row my-3">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3">
+        <p>ステータス</p>
+      </div>
+      <div class="col-sm-5">
+        <%= f.radio_button :is_active, true, class:"ml-4" %>
+        <%= f.label :is_active, "有効", value: "ture" %>
+        <%= f.radio_button :is_active, false, class:"ml-2" %>
+        <%= f.label :is_active, "利用停止", value: "false" %>
+      </div>
     </div>
-  </div>
-  <div class="row my-3">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-3">
-      <p>ステータス</p>
+    <div class="row my-3">
+      <div class="col-sm-5"></div>
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
     </div>
-    <div class="col-sm-5">
-      <%= f.radio_button :is_active, true, class:"ml-4" %>
-      <%= f.label :is_active, "有効", value: "ture" %>
-      <%= f.radio_button :is_active, false, class:"ml-2" %>
-      <%= f.label :is_active, "利用停止", value: "false" %>
-    </div>
-  </div>
-  <div class="row my-3">
-    <div class="col-sm-5"></div>
-    <%= f.submit "変更を保存", class: "btn btn-success" %>
-  </div>
   <% end %>
 </div>

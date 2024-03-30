@@ -4,11 +4,11 @@
   <hr>
   <div class="card-text">
     <%= form_with model: [@post, @post_comment] do |f| %>
-    <div class="form-group">
-      <%= f.label :comment, "コメントする", class:"control-label my-1" %>
-      <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントをここに(200字以内)" %>
-    </div>
-    <%= f.submit "送信する", class: "btn btn-info float-right my-1", local:true %>
+      <div class="form-group">
+        <%= f.label :comment, "コメントする", class:"control-label my-1" %>
+        <%= f.text_area :comment, class: "form-control",rows: '5', placeholder: "コメントをここに(200字以内)" %>
+      </div>
+      <%= f.submit "送信する", class: "btn btn-info float-right my-1", local:true %>
     <% end %>
   </div>
   <hr>

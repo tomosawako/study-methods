@@ -21,25 +21,25 @@
       </div>
       <div class="collapse" id="example-1">
         <% @post.post_comments.where(parent_id: nil).offset(5).each.with_index(5) do |post_comment,i| %>
-        <%= render 'admin/post_comments/hide_comments', post_comment: post_comment, i: i %>
+          <%= render 'admin/post_comments/hide_comments', post_comment: post_comment, i: i %>
         <% end %>
       </div>
     <% end %>
   </div>
 </div>
 <%= form_with model: @post, url: admin_post_path(@post), method: :patch do |f| %>
-<p class="status text-center mt-3">
-  投稿ステータス
-  <span class="text-success ml-3">
-    <%= f.radio_button :is_active, true, class:"ml-4" %>
-    <%= f.label :is_active, "公開", value: "ture" %>
-  </span>
-  <span class="text-secondary ml-3">
-    <%= f.radio_button :is_active, false, class:"ml-2" %>
-    <%= f.label :is_active, "非公開", value: "false" %>
-  </span>
-  <span>
-    <%= f.submit "変更を保存", class:"btn btn-sm btn-success ml-4" %>
-  </span>
-</p>
+  <p class="status text-center mt-3">
+    投稿ステータス
+    <span class="text-success ml-3">
+      <%= f.radio_button :is_active, true, class:"ml-4" %>
+      <%= f.label :is_active, "公開", value: "ture" %>
+    </span>
+    <span class="text-secondary ml-3">
+      <%= f.radio_button :is_active, false, class:"ml-2" %>
+      <%= f.label :is_active, "非公開", value: "false" %>
+    </span>
+    <span>
+      <%= f.submit "変更を保存", class:"btn btn-sm btn-success ml-4" %>
+    </span>
+  </p>
 <% end %>

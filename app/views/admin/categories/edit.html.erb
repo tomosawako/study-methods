@@ -1,8 +1,8 @@
 <h2 class="my-5 mx-5">科目・資格名編集</h2>
 <div class="mb-5">
   <%= form_with model: @category, url: admin_category_path,mehod: :patch do |f| %>
-  <b><%= f.label :"科目・資格名", class: "mx-5" %></b>
-  <%= f.text_field :name, class: "mx-4" %>
-  <%= f.submit '変更を保存', class: "btn btn-success ml-4" %>
+    <b><%= f.label :"科目・資格名", class: "mx-5" %></b>
+    <%= f.text_field :name, class: "mx-4" %>
+    <%= f.submit '変更を保存', class: "btn btn-success ml-4" %>
   <% end %>
 </div>

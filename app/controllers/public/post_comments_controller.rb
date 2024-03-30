@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_enduser!
+  before_action :is_matching_login_user, only: [:destroy]
 
   def create
     post = Post.find(params[:post_id])
@@ -29,6 +30,14 @@ class Public::PostCommentsController < ApplicationController
 
   def post_comment_params
     params.require(:post_comment).permit(:comment, :parent_id)
+  end
+
+  def is_matching_login_user
+    comment = PostComment.find(params[:id])
+    enduser = Enduser.find(comment.enduser.id)
+    unless enduser.id == current_enduser.id
+      redirect_to posts_path
+    end
   end
 
 end

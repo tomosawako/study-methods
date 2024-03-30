@@ -34,35 +34,35 @@
       <i class="fa-solid fa-circle-arrow-up"></i>への返信コメントを表示
     </button>
   </div>
-<div class="collapse" id="comment<%=i%>">
-<% post_comment.replies.offset(0).each.with_index(1) do |reply,index| %>
-<div class="media border p-1">
-    <p><%= image_tag reply.enduser.get_profile_image(80,80) %></p>
-    <div class="media-body ml-2">
-      <h6 class="mb-1">
-        <%= link_to enduser_path(reply.enduser) do %>
-        <%= reply.enduser.name %>
-        <% end %>
-        <%= reply.created_at.strftime('%Y/%m/%d') %>
-      </h6>
-      <%= reply.comment %><br>
-      <% if reply.enduser == current_enduser %>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
-      <% end %>
-      <% if post_comment.replies.count == index %>
-      <div class="text-right my-2 mr-3">
-        <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#reply-form-pluss<%=index%>" aria-expand="false" aria-controls="example-1">
-          <i class="fa-solid fa-reply"></i>返信フォーム
-        </button>
+  <div class="collapse" id="comment<%=i%>">
+    <% post_comment.replies.offset(0).each.with_index(1) do |reply,index| %>
+     <div class="media border p-1">
+        <p><%= image_tag reply.enduser.get_profile_image(80,80) %></p>
+        <div class="media-body ml-2">
+          <h6 class="mb-1">
+            <%= link_to enduser_path(reply.enduser) do %>
+              <%= reply.enduser.name %>
+            <% end %>
+            <%= reply.created_at.strftime('%Y/%m/%d') %>
+          </h6>
+          <%= reply.comment %><br>
+          <% if reply.enduser == current_enduser %>
+            <%= link_to "削除", post_post_comment_path(post_comment.post, reply), method: :delete, "data-confirm" => "返信コメントを削除しますか？", class: "btn btn-sm btn-danger mt-2" %>
+          <% end %>
+          <% if post_comment.replies.count == index %>
+            <div class="text-right my-2 mr-3">
+              <button type="button" class="btn btn-outline-info" data-toggle="collapse" data-target="#reply-form-pluss<%=index%>" aria-expand="false" aria-controls="example-1">
+                <i class="fa-solid fa-reply"></i>返信フォーム
+              </button>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <% end %>
-    </div>
+      <div class="collapse" id="reply-form-pluss<%=index%>">
+        <!-- 返信フォーム -->
+        <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
+      </div>
+    <% end %>
   </div>
-  <div class="collapse" id="reply-form-pluss<%=index%>">
-  <!-- 返信フォーム -->
-  <%= render 'public/post_comments/reply_form', post: @post, comment_reply: comment_reply, post_comment: post_comment %>
-　</div>
-　<% end %>
-</div>
 <% end %>
 

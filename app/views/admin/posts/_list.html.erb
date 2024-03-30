@@ -53,7 +53,7 @@
     </div>
     <div class="col-sm-8 ml-1">
       <%= link_to admin_enduser_path(post.enduser.id) do %>
-      <span><i class="fas fa-user"></i> By <%= post.enduser.name %> | </span>
+        <span><i class="fas fa-user"></i> By <%= post.enduser.name %> | </span>
       <% end %>
       <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
       <% if index.present? %>
@@ -65,8 +65,7 @@
           <% end %>
         </span>
       <% else %>
-        <i class="fa-regular fa-comment-dots"></i>
-          <%= post.post_comments.count %> |
+        <i class="fa-regular fa-comment-dots"></i><%= post.post_comments.count %> |
       <% end %>
       <span>
         <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>

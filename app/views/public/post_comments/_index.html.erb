@@ -6,18 +6,18 @@
   <hr>
   <% if post.post_comments.present? %>
     <% post.post_comments.where(parent_id: nil).first(5).each.with_index do |post_comment,i| %>
-    <%= render 'public/post_comments/hide_comments', post_comment: post_comment, comment_reply: comment_reply, i: i %>
+      <%= render 'public/post_comments/hide_comments', post_comment: post_comment, comment_reply: comment_reply, i: i %>
     <% end %>
     <% if post.post_comments.where(parent_id: nil).offset(5).any? %>
-    <div class="text-center my-2">
-      <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
-        全てのコメントを表示
-      </button>
-    </div>
+      <div class="text-center my-2">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#example-1" aria-expand="false" aria-controls="example-1">
+          全てのコメントを表示
+        </button>
+      </div>
     <% end %>
     <div class="collapse" id="example-1">
       <% post.post_comments.where(parent_id: nil).offset(5).each.with_index(5) do |post_comment,i| %>
-      <%= render 'public/post_comments/hide_comments', post_comment: post_comment, comment_reply: comment_reply, i: i %>
+        <%= render 'public/post_comments/hide_comments', post_comment: post_comment, comment_reply: comment_reply, i: i %>
       <% end %>
     </div>
   <% end %>

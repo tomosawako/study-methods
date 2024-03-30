@@ -4,14 +4,14 @@
       <h3 class="text-center mt-5">全<%= @post_all.count %>件の投稿</h3>
       <!--- 投稿一覧 -->
       <% @posts.each do |post| %>
-      <div class="card border-warning w-75 mt-4 shadow-lg p-3 mx-auto">
-        <%= render 'admin/posts/list', post: post, index: true %>
-      </div>
+        <div class="card border-warning w-75 mt-4 shadow-lg p-3 mx-auto">
+          <%= render 'admin/posts/list', post: post, index: true %>
+        </div>
       <% end %>
     </div>
   </div>
   <div class="row my-2">
     <div class="col-sm-4"></div>
     <div class="col-sm-4"><%= paginate @posts %></div>
-</div>
+  </div>
 </div>

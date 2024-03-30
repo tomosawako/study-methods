@@ -36,9 +36,9 @@
       </span>
       <span><%= post.created_at.strftime('%Y/%m/%d') %> |</span>
       <% if post.enduser == current_enduser %>
-      <br>
-      <span><%= link_to "編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></span>
-      <span class="ml-1"><%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+        <br>
+        <span><%= link_to "編集", edit_post_path(post.id), class: "btn btn-sm btn-success" %></span>
+        <span class="ml-1"><%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
       <% end %>
     </div>
   </div>

@@ -4,36 +4,36 @@
 <h3 class="text-center my-5 ml-5">プロフィール編集</h3>
 <div class="container">
   <%= form_with model: @enduser, method: :patch do |f| %>
-  <div class="row mb-4 ml-5">
-    <div class="col-sm-2">
-      <label for="inputName", class:"col-form-label">ユーザー名</label>
+    <div class="row mb-4 ml-5">
+      <div class="col-sm-2">
+        <label for="inputName", class:"col-form-label">ユーザー名</label>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前" %>
+      </div>
     </div>
-    <div class="col-sm-9">
-      <%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "名前" %>
+    <div class="row mb-4 ml-5">
+      <div class="col-sm-2">
+        <label for="inputImage", class: "col-sm-4 col-form-label">プルフィール画像</label>
+      </div>
+      <div class="col-sm-9">
+        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+      </div>
     </div>
-  </div>
-  <div class="row mb-4 ml-5">
-    <div class="col-sm-2">
-      <label for="inputImage", class: "col-sm-4 col-form-label">プルフィール画像</label>
+    <div class="row mb-4 ml-5">
+      <div class="col-sm-2">
+        <label for="inputEmail", class: "col-sm-4 col-form-label">メールアドレス</label>
+      </div>
+      <div class="col-sm-9">
+        <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
+      </div>
     </div>
-    <div class="col-sm-9">
-      <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+    <div class="row ml-5">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-9">
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      </div>
     </div>
-  </div>
-  <div class="row mb-4 ml-5">
-    <div class="col-sm-2">
-      <label for="inputEmail", class: "col-sm-4 col-form-label">メールアドレス</label>
-    </div>
-    <div class="col-sm-9">
-      <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
-    </div>
-  </div>
-  <div class="row ml-5">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-9">
-      <%= f.submit "変更を保存", class: "btn btn-success" %>
-    </div>
-  </div>
   <% end %>
 </div>
 

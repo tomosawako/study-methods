@@ -18,11 +18,11 @@
       <% end %>
       <!--- 投稿一覧 -->
       <% @posts.each do |post| %>
-      <!--投稿ステータス確認-->
-      <% if post.is_active %>
-        <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
-          <%= render 'list', post: post, index: true %>
-        </div>
+        <!--投稿ステータス確認-->
+        <% if post.is_active %>
+          <div class="card border-warning mx-auto w-75 mt-4 shadow-lg p-3">
+            <%= render 'list', post: post, index: true %>
+          </div>
         <% end %>
       <% end %>
     </div>
