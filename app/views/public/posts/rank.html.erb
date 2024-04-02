@@ -5,8 +5,13 @@
       <%= render 'search_category', categories: @categories %>
     </div>
     <div class="col-sm-9">
-      <h4 class="text-center mt-4">"<%= @category.name %>"のお気に入り数ランキング</h4>
-      <p class="text-center mb-0">新着順は<%= link_to "こちら", posts_path(category_id: @category.id) %></p>
+      <% if params[:category_id].present? %>
+        <h4 class="text-center mt-4">"<%= @category.name %>"のお気に入り数ランキング</h4>
+        <p class="text-center mb-0">新着順は<%= link_to "こちら", posts_path(category_id: @category.id) %></p>
+      <% else %>
+        <h4 class="text-center mt-4">全投稿のお気に入り数ランキング</h4>
+        <p class="text-center mb-0">新着順は<%= link_to "こちら", posts_path %></p>
+      <% end %>
       <!-- 同率順位表示 -->
       <% lastFavorite = 0 %>
       <% j = 1 %>
@@ -51,10 +56,6 @@
         <% end %>
       <% end %>
     </div>
-  </div>
-  <div class="row my-2">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4"><%= paginate @post_ranks %></div>
   </div>
 </div>
 

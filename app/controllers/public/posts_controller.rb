@@ -69,9 +69,13 @@ class Public::PostsController < ApplicationController
 
   def rank
     @categories = Category.all
-    @category_id = params[:category_id]
-    @category = Category.find(params[:category_id])
-    @post_ranks = Post.rank_posts(@category_id).page(params[:page])
+    if params[:category_id].present?
+      @category_id = params[:category_id]
+      @category = Category.find(params[:category_id])
+      @post_ranks = Post.rank_posts(@category_id)
+    else
+      @post_ranks = Post.all_rank_posts
+    end
   end
 
   private

@@ -28,4 +28,8 @@ class Post < ApplicationRecord
     self.joins(:favorites).where(category_id: category_id).group(:post_id).order('COUNT(post_id) DESC')
   end
 
+  def self.all_rank_posts
+    self.joins(:favorites).all.group(:post_id).order('COUNT(post_id) DESC')
+  end
+
 end
