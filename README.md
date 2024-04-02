@@ -44,7 +44,7 @@ https://docs.google.com/spreadsheets/d/1W6Ha4vVhzdI5AfPDitvXUZ0pDcszvGj9VKzZ-sjg
 - テーブル定義書(https://docs.google.com/spreadsheets/d/148t5LRsqVWieLjbq1l_vBYQghlfzmhRAVXW-KPdXEbY/edit?usp=sharing)
 - 詳細設計(https://docs.google.com/spreadsheets/d/1rj2ai3D-Y0jV-Wq96S3AAM--1T3p03kndCOm8xZOeJM/edit?usp=sharing)
 - AWS構成図
-<img width="767" alt="スクリーンショット 2024-04-02 14 39 52" src="https://github.com/tomosawako/study-methods/assets/145893964/80048a3f-d73d-4f18-a4b7-699ea41410a9">
+<img width="767" alt="スクリーンショット 2024-04-02 14 39 52" src="https://github.com/tomosawako/study-methods/assets/145893964/80048a3f-d73d-4f18-a4b7-699ea41410a9" width="100">
 
 ## 開発環境
 - OS：Amazon Linux 2
